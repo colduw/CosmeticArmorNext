@@ -3,6 +3,7 @@ loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 [[mods]]
 modId = "${mod_id}"
+updateJSONURL="${updateURL}"
 version = "${mod_version}"
 displayName = "${mod_name}"
 credits = "dmillerw - original author; azanor - some code learned from baubles; izuminya - button icon; Deph0 and sblectric for their support when i'm absent"

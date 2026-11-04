@@ -3,6 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.neoforged.gradle.userdev' version '7.1.39'
+    id 'me.modmuss50.mod-publish-plugin' version '2.2.1'
 }
 
 version = mod_version
@@ -39,7 +40,8 @@ tasks.withType(ProcessResources).configureEach {
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+            updateURL              : updateURL
     ]
     inputs.properties replaceProperties
 
@@ -89,4 +91,21 @@ jar.doLast {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+publishMods {
+    file = jar.archiveFile
+    displayName = "${jar.archiveFileName.get()}"
+    changelog = ""
+    type = STABLE
+    modLoaders.add("neoforge")
+
+    curseforge {
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        projectId = "${curseforge_id}"
+        minecraftVersionList("${curseforge_version_list}")
+        javaVersions.add(JavaVersion.VERSION_25)
+        client = true
+        server = true
+    }
 }
