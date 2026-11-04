@@ -3,6 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '7.0.40'
+    id 'me.modmuss50.mod-publish-plugin' version '2.2.1'
 }
 
 version = mod_version
@@ -32,7 +33,7 @@ tasks.named('processResources', ProcessResources).configure {
             forge_version       : forge_version, forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors         : mod_authors, mod_description: mod_description,
+            mod_authors         : mod_authors, mod_description: mod_description, updateURL: updateURL
     ]
     inputs.properties replaceProperties
 
@@ -102,4 +103,21 @@ sourceSets.each {
     def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
     it.output.resourcesDir = dir
     it.java.destinationDirectory = dir
+}
+
+publishMods {
+    file = jar.archiveFile
+    displayName = "${jar.archiveFileName.get()}"
+    changelog = ""
+    type = STABLE
+    modLoaders.add("forge")
+
+    curseforge {
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        projectId = "${curseforge_id}"
+        minecraftVersionList("${curseforge_version_list}")
+        javaVersions.add(JavaVersion.VERSION_25)
+        client = true
+        server = true
+    }
 }
