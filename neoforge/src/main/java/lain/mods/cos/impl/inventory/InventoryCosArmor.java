@@ -32,10 +32,6 @@ public class InventoryCosArmor extends CAStacksBase implements Container, MenuPr
     }
 
     @Override
-    public void stopOpen(ContainerUser player) {
-    }
-
-    @Override
     public AbstractContainerMenu createMenu(int windowId, Inventory invPlayer, Player player) {
         return new ContainerCosArmor(invPlayer, this, player, windowId);
     }
@@ -92,11 +88,6 @@ public class InventoryCosArmor extends CAStacksBase implements Container, MenuPr
     }
 
     @Override
-    public boolean canPlaceItem(int slot, ItemStack stack) {
-        return true;
-    }
-
-    @Override
     public boolean stillValid(Player player) {
         return true;
     }
@@ -124,18 +115,14 @@ public class InventoryCosArmor extends CAStacksBase implements Container, MenuPr
     }
 
     @Override
-    public void startOpen(ContainerUser player) {
-    }
-
-    @Override
     public ItemStack removeItemNoUpdate(int slot) {
         return removeItem(slot, Integer.MAX_VALUE);
     }
 
     @Override
     public boolean setHidden(String modid, String identifier, boolean set) {
-        boolean changed;
-        if (changed = super.setHidden(modid, identifier, set))
+        boolean changed = super.setHidden(modid, identifier, set);
+        if (changed)
             listeners.stream().filter(HiddenFlagsChangeListener.class::isInstance).map(HiddenFlagsChangeListener.class::cast).forEach(l -> l.accept(this, modid, identifier));
         return changed;
     }
@@ -154,16 +141,16 @@ public class InventoryCosArmor extends CAStacksBase implements Container, MenuPr
         super.setSize(size);
     }
 
-    public boolean setUpdateListener(ContentsChangeListener listener) {
+    public void setUpdateListener(ContentsChangeListener listener) {
         if (listener == null || listeners.contains(listener))
-            return false;
-        return listeners.add(listener);
+            return;
+        listeners.add(listener);
     }
 
-    public boolean setUpdateListener(HiddenFlagsChangeListener listener) {
+    public void setUpdateListener(HiddenFlagsChangeListener listener) {
         if (listener == null || listeners.contains(listener))
-            return false;
-        return listeners.add(listener);
+            return;
+        listeners.add(listener);
     }
 
     @FunctionalInterface

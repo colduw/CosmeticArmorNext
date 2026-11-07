@@ -7,7 +7,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public class ModPayloads {
-
     public static void setupPayloads(PayloadRegistrar registrar) {
         registrar.playToClient(PayloadSyncCosArmor.TYPE, PayloadSyncCosArmor.STREAM_CODEC, (p, c) -> {
             c.enqueueWork(() -> {
@@ -40,5 +39,4 @@ public class ModPayloads {
             });
         });
     }
-
 }

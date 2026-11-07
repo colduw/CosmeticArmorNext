@@ -89,21 +89,15 @@ public enum GuiHandler {
                             ((GuiCosArmorToggleButton) button).state = PlayerRenderHandler.Disabled ? 1 : 0;
                         }));
             }
-        } else if (event.getScreen() instanceof CreativeModeInventoryScreen) {
-            AbstractContainerScreen<?> screen = (AbstractContainerScreen<?>) event.getScreen();
-
+        } else if (event.getScreen() instanceof CreativeModeInventoryScreen screen) {
             if (!ModConfigs.CosArmorCreativeGuiButton_Hidden.get()) {
                 event.addListener(new GuiCosArmorButton(
                         /*screen.leftPos + */ModConfigs.CosArmorCreativeGuiButton_Left.get()/* 95 */,
                         screen.getTopPos() + ModConfigs.CosArmorCreativeGuiButton_Top.get()/* 38 */,
                         10, 10,
                         Component.translatable("cos.gui.buttoncos"),
-                        button -> {
-                            ClientPacketDistributor.sendToServer(new PayloadOpenCosArmorInventory());
-                        },
-                        (button, isInventoryOpen) -> {
-                            button.visible = isInventoryOpen;
-                        }));
+                        button -> ClientPacketDistributor.sendToServer(new PayloadOpenCosArmorInventory()),
+                        (button, isInventoryOpen) -> button.visible = isInventoryOpen));
             }
         }
     }
