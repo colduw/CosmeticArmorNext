@@ -27,9 +27,7 @@ public class NetworkManager {
     public <T extends NetworkPacket> void registerPacket(Class<T> packetClass, Supplier<T> packetSupplier) {
         if (packetClass == null || packetSupplier == null || packetSupplier.get() == null)
             throw new IllegalArgumentException();
-        channel.play().bidirectional().add(packetClass, StreamCodec.of((buffer, packet) -> {
-            packet.writeToBuffer(buffer);
-        }, (buffer) -> {
+        channel.play().bidirectional().add(packetClass, StreamCodec.of((buffer, packet) -> packet.writeToBuffer(buffer), (buffer) -> {
             T packet = packetSupplier.get();
             packet.readFromBuffer(buffer);
             return packet;

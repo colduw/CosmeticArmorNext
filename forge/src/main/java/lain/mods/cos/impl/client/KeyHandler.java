@@ -11,10 +11,9 @@ import net.minecraftforge.event.TickEvent;
 import java.util.function.Consumer;
 
 public enum KeyHandler {
-
     INSTANCE;
 
-    public KeyMapping keyOpenCosArmorInventory = new KeyMapping("cos.key.opencosarmorinventory", InputConstants.UNKNOWN.getValue(), KeyMapping.Category.INVENTORY);
+    public final KeyMapping keyOpenCosArmorInventory = new KeyMapping("cos.key.opencosarmorinventory", InputConstants.UNKNOWN.getValue(), KeyMapping.Category.INVENTORY);
 
     private void handleClientTick(TickEvent.ClientTickEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();

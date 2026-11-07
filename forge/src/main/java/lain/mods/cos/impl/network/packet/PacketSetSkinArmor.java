@@ -24,9 +24,7 @@ public class PacketSetSkinArmor implements NetworkPacket {
 
     @Override
     public void handlePacketServer(CustomPayloadEvent.Context context) {
-        context.enqueueWork(() -> {
-            ModObjects.invMan.getCosArmorInventory(context.getSender().getUUID()).setSkinArmor(slot, isSkinArmor);
-        });
+        context.enqueueWork(() -> ModObjects.invMan.getCosArmorInventory(context.getSender().getUUID()).setSkinArmor(slot, isSkinArmor));
     }
 
     @Override
