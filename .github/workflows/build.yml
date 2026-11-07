@@ -39,6 +39,7 @@ jobs:
       with:
         tag_name: "1.21.9-${{ steps.epoch_timestamp.outputs.timestamp }}"
         name: "1.21.9 (Neo)Forge Release"
+        body_path: CHANGELOG.md
         draft: true
         prerelease: false
         files: |
