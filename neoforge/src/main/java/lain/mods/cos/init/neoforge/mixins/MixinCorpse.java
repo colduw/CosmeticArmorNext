@@ -32,8 +32,8 @@ public class MixinCorpse {
                 }
 
                 stack.remove(NeoForgeCosmeticArmorReworked.SLOT_PLACEBACK.get());
-                if (cosArmor.getStackInSlot(slot).isEmpty()) {
-                    cosArmor.setStackInSlot(slot, stack.copyAndClear());
+                if (cosArmor.getItem(slot).isEmpty()) {
+                    cosArmor.setItem(slot, stack.copyAndClear());
                 }
             }
 
@@ -55,8 +55,8 @@ public class MixinCorpse {
                 }
 
                 stack.remove(NeoForgeCosmeticArmorReworked.SLOT_PLACEBACK.get());
-                if (cosArmor.getStackInSlot(slot).isEmpty()) {
-                    cosArmor.setStackInSlot(slot, stack.copyAndClear());
+                if (cosArmor.getItem(slot).isEmpty()) {
+                    cosArmor.setItem(slot, stack.copyAndClear());
                 }
             }
         }

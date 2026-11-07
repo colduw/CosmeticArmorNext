@@ -26,8 +26,8 @@ public class MixinGraveStone {
             }
 
             itemStack.remove(NeoForgeCosmeticArmorReworked.SLOT_PLACEBACK.get());
-            if (cosArmor.getStackInSlot(slot).isEmpty()) {
-                cosArmor.setStackInSlot(slot, itemStack.copyAndClear());
+            if (cosArmor.getItem(slot).isEmpty()) {
+                cosArmor.setItem(slot, itemStack.copyAndClear());
             }
         }
     }
