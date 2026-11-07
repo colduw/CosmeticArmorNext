@@ -69,7 +69,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, titleLabelX, titleLabelY, 4210752, false);
+        graphics.drawString(font, title, titleLabelX, titleLabelY, 0xff404040, false);
     }
 
     @Override

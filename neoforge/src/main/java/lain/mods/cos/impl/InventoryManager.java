@@ -8,6 +8,7 @@ import lain.mods.cos.impl.inventory.ContainerCosArmor;
 import lain.mods.cos.impl.inventory.InventoryCosArmor;
 import lain.mods.cos.impl.network.payload.PayloadSyncCosArmor;
 import lain.mods.cos.impl.network.payload.PayloadSyncHiddenFlags;
+import lain.mods.cos.init.neoforge.NeoForgeCosmeticArmorReworked;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.nbt.CompoundTag;
@@ -101,23 +102,21 @@ public class InventoryManager {
         }
 
         @Override
-        public boolean setUpdateListener(ContentsChangeListener listener) {
-            return false;
+        public void setUpdateListener(ContentsChangeListener listener) {
         }
 
         @Override
-        public boolean setUpdateListener(HiddenFlagsChangeListener listener) {
-            return false;
+        public void setUpdateListener(HiddenFlagsChangeListener listener) {
         }
 
     };
 
     protected static final Random RANDOM = new Random();
 
-    protected final LoadingCache<UUID, InventoryCosArmor> CommonCache = CacheBuilder.newBuilder().build(new CacheLoader<UUID, InventoryCosArmor>() {
+    protected final LoadingCache<UUID, InventoryCosArmor> CommonCache = CacheBuilder.newBuilder().build(new CacheLoader<>() {
 
         @Override
-        public InventoryCosArmor load(UUID key) throws Exception {
+        public InventoryCosArmor load(UUID key) {
             InventoryCosArmor inventory = new InventoryCosArmor();
             inventory.setUpdateListener((inv, slot) -> onInventoryChanged(key, inv, slot));
             inventory.setUpdateListener((inv, modid, identifier) -> onHiddenFlagsChanged(key, inv, modid, identifier));
@@ -165,6 +164,10 @@ public class InventoryManager {
                     if (stack.isEmpty())
                         continue;
 
+                    if (ModList.get().isLoaded("corpse") || ModList.get().isLoaded("gravestone")) {
+                        stack.set(NeoForgeCosmeticArmorReworked.SLOT_PLACEBACK.get(), i);
+                    }
+
                     float fX = RANDOM.nextFloat() * 0.75F + 0.125F;
                     float fY = RANDOM.nextFloat() * 0.75F;
                     float fZ = RANDOM.nextFloat() * 0.75F + 0.125F;
@@ -184,8 +187,7 @@ public class InventoryManager {
         CommonCache.invalidate(event.getEntity().getUUID());
         getCosArmorInventory(event.getEntity().getUUID());
 
-        if (event.getEntity() instanceof ServerPlayer) {
-            ServerPlayer player = (ServerPlayer) event.getEntity();
+        if (event.getEntity() instanceof ServerPlayer player) {
             for (ServerPlayer other : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
                 if (other == player)
                     continue;
@@ -208,9 +210,7 @@ public class InventoryManager {
     }
 
     private void handleRegisterCommands(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("clearcosarmor").requires(s -> {
-            return s.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
-        }).executes(s -> {
+        event.getDispatcher().register(Commands.literal("clearcosarmor").requires(s -> s.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER)).executes(s -> {
             int count = 0;
             ServerPlayer player = s.getSource().getPlayerOrException();
             InventoryCosArmor inv = getCosArmorInventory(player.getUUID());
@@ -238,9 +238,7 @@ public class InventoryManager {
         })));
 
         if (!ModConfigs.CosArmorDisableCosHatCommand.get()) {
-            event.getDispatcher().register(Commands.literal("coshat").requires(s -> {
-                return s.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.ALL));
-            }).executes(s -> {
+            event.getDispatcher().register(Commands.literal("coshat").requires(s -> s.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.ALL))).executes(s -> {
                 ServerPlayer player = s.getSource().getPlayerOrException();
                 InventoryCosArmor inv = getCosArmorInventory(player.getUUID());
                 ItemStack stack1 = player.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -261,9 +259,9 @@ public class InventoryManager {
 
     private void handleServerStopping(ServerStoppingEvent event) {
         ModObjects.logger.debug("Server is stopping... try to save all still loaded CosmeticArmor data");
-        CommonCache.asMap().entrySet().forEach(e -> {
-            ModObjects.logger.debug(e.getKey());
-            saveInventory(e.getKey(), e.getValue());
+        CommonCache.asMap().forEach((key, value) -> {
+            ModObjects.logger.debug(key);
+            saveInventory(key, value);
         });
         CommonCache.invalidateAll();
     }

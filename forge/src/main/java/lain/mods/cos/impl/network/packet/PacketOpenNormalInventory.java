@@ -15,9 +15,7 @@ public class PacketOpenNormalInventory implements NetworkPacket {
 
     @Override
     public void handlePacketServer(CustomPayloadEvent.Context context) {
-        context.enqueueWork(() -> {
-            context.getSender().doCloseContainer();
-        });
+        context.enqueueWork(() -> context.getSender().doCloseContainer());
     }
 
     @Override

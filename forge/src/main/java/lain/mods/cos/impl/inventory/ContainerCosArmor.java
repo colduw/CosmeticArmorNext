@@ -172,7 +172,7 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
         ItemStack stack = ItemStack.EMPTY;
         Slot slot = slots.get(slotIndex);
 
-        if ((slot != null) && (slot.hasItem())) {
+        if (slot.hasItem()) {
             ItemStack stack1 = slot.getItem();
             stack = stack1.copy();
             EquipmentSlot desiredSlot = player.getEquipmentSlotForItem(stack);
@@ -242,7 +242,7 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
 
     @Override
     public Slot getResultSlot() {
-        return slots.get(0);
+        return slots.getFirst();
     }
 
     @Override

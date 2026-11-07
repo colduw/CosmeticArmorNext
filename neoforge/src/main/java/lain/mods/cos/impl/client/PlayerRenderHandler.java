@@ -17,20 +17,14 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public enum PlayerRenderHandler {
-
     INSTANCE;
-
     private static final EquipmentSlot[] SLOTS = new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD};
-
     public static boolean Disabled = false;
-
-    private final LoadingCache<Object, Deque<Runnable>> cache = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<Object, Deque<Runnable>>() {
-
+    private final LoadingCache<Object, Deque<Runnable>> cache = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<>() {
         @Override
-        public Deque<Runnable> load(Object key) throws Exception {
+        public Deque<Runnable> load(Object key) {
             return new ArrayDeque<>();
         }
-
     });
 
     public void onExtractPlayerRenderState(AbstractClientPlayer player, AvatarRenderState state, float partialTicks) {
