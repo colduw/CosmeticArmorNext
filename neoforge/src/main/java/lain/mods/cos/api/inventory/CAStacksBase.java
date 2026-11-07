@@ -56,13 +56,11 @@ public class CAStacksBase extends ItemStackHandler {
 
         hidden.clear();
 
-        nbt.getString("Hidden").ifPresent(h -> {
-            Arrays.stream(h.split("\0")).forEach(str -> {
-                int i = str.indexOf(":");
-                if (i != -1)
-                    hidden.computeIfAbsent(str.substring(0, i), key -> new HashSet<>()).add(str.substring(i + 1));
-            });
-        });
+        nbt.getString("Hidden").ifPresent(h -> Arrays.stream(h.split("\0")).forEach(str -> {
+            int i = str.indexOf(":");
+            if (i != -1)
+                hidden.computeIfAbsent(str.substring(0, i), key -> new HashSet<>()).add(str.substring(i + 1));
+        }));
 
         onLoad();
     }
