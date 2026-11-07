@@ -92,7 +92,7 @@ public enum GuiHandler {
                         screen.getGuiTop() + ModConfigs.CosArmorCreativeGuiButton_Top.get()/* 38 */,
                         10, 10,
                         Component.translatable("cos.gui.buttoncos"),
-                        button -> PacketDistributor.sendToServer(new PayloadOpenCosArmorInventory()),
+                        button -> ClientPacketDistributor.sendToServer(new PayloadOpenCosArmorInventory()),
                         (button, isInventoryOpen) -> button.visible = isInventoryOpen));
             }
         }
