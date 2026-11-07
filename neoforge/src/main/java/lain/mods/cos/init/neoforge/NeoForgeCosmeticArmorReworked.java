@@ -1,5 +1,6 @@
 package lain.mods.cos.init.neoforge;
 
+import com.mojang.serialization.Codec;
 import lain.mods.cos.impl.ModConfigs;
 import lain.mods.cos.impl.ModObjects;
 import lain.mods.cos.impl.client.GuiHandler;
@@ -8,7 +9,10 @@ import lain.mods.cos.impl.client.PlayerRenderHandler;
 import lain.mods.cos.impl.inventory.ContainerCosArmor;
 import lain.mods.cos.impl.network.ModPayloads;
 import lain.mods.cos.init.ModConstants;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
@@ -24,13 +28,19 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 @Mod(ModConstants.MODID)
 public class NeoForgeCosmeticArmorReworked {
-
     private static final DeferredRegister<MenuType<?>> MENU = DeferredRegister.create(BuiltInRegistries.MENU, ModConstants.MODID);
-
     public static final DeferredHolder<MenuType<?>, MenuType<ContainerCosArmor>> typeContainerCosArmor = MENU.register("inventorycosarmor", () -> new MenuType<>(ModObjects.invMan::createContainerClient, FeatureFlags.VANILLA_SET));
+
+    public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, ModConstants.MODID);
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> SLOT_PLACEBACK = COMPONENTS.register("cosarmor_slot_index", () ->
+            DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .networkSynchronized(ByteBufCodecs.VAR_INT)
+                    .build());
 
     public NeoForgeCosmeticArmorReworked(IEventBus bus) {
         MENU.register(bus);
+        COMPONENTS.register(bus);
         bus.addListener(this::setup);
         bus.addListener(this::setupClient);
         if (FMLEnvironment.dist.isClient()) {
