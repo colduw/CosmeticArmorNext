@@ -27,9 +27,7 @@ public enum GuiHandler {
     private boolean lastInventoryOpen;
 
     private void handleGuiDrawPre(ScreenEvent.Render.Pre event) {
-        if (event.getScreen() instanceof AbstractContainerScreen) {
-            AbstractContainerScreen<?> screen = (AbstractContainerScreen<?>) event.getScreen();
-
+        if (event.getScreen() instanceof AbstractContainerScreen<?> screen) {
             if (lastLeft != screen.getLeftPos()) {
                 int diffLeft = screen.getLeftPos() - lastLeft;
                 lastLeft = screen.getLeftPos();
@@ -46,8 +44,7 @@ public enum GuiHandler {
     }
 
     private void handleGuiInitPost(ScreenEvent.Init.Post event) {
-        if (event.getScreen() instanceof AbstractContainerScreen) {
-            AbstractContainerScreen<?> screen = (AbstractContainerScreen<?>) event.getScreen();
+        if (event.getScreen() instanceof AbstractContainerScreen<?> screen) {
 
             lastLeft = screen instanceof CreativeModeInventoryScreen ? 0 : screen.getLeftPos();
             lastInventoryOpen = true;
@@ -89,21 +86,15 @@ public enum GuiHandler {
                             ((GuiCosArmorToggleButton) button).state = PlayerRenderHandler.Disabled ? 1 : 0;
                         }));
             }
-        } else if (event.getScreen() instanceof CreativeModeInventoryScreen) {
-            AbstractContainerScreen<?> screen = (AbstractContainerScreen<?>) event.getScreen();
-
+        } else if (event.getScreen() instanceof CreativeModeInventoryScreen screen) {
             if (!ModConfigs.CosArmorCreativeGuiButton_Hidden.get()) {
                 event.addListener(new GuiCosArmorButton(
                         /*screen.leftPos + */ModConfigs.CosArmorCreativeGuiButton_Left.get()/* 95 */,
                         screen.getTopPos() + ModConfigs.CosArmorCreativeGuiButton_Top.get()/* 38 */,
                         10, 10,
                         Component.translatable("cos.gui.buttoncos"),
-                        button -> {
-                            ClientPacketDistributor.sendToServer(new PayloadOpenCosArmorInventory());
-                        },
-                        (button, isInventoryOpen) -> {
-                            button.visible = isInventoryOpen;
-                        }));
+                        button -> ClientPacketDistributor.sendToServer(new PayloadOpenCosArmorInventory()),
+                        (button, isInventoryOpen) -> button.visible = isInventoryOpen));
             }
         }
     }
