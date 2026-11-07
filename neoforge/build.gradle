@@ -24,8 +24,20 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+repositories {
+    maven {
+        url = "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation "curse.maven:corpse-316582:${corpse_version}"
+    implementation "curse.maven:gravestone-238551:${gravestone_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -45,7 +57,7 @@ tasks.withType(ProcessResources).configureEach {
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/neoforge.mods.toml']) {
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
         expand replaceProperties
     }
 }
@@ -53,7 +65,7 @@ processResources {
     from 'LICENSE.txt'
 }
 
-task apiZip(type: Jar) {
+tasks.register('apiZip', Jar) {
     from(sourceSets.main.java) {
         include "lain/mods/cos/api/**"
     }
@@ -96,7 +108,7 @@ tasks.withType(JavaCompile).configureEach {
 publishMods {
     file = jar.archiveFile
     displayName = "${jar.archiveFileName.get()}"
-    changelog = ""
+    changelog = rootProject.file('CHANGELOG.md').text
     type = STABLE
     modLoaders.add("neoforge")
 

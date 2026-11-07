@@ -15,14 +15,11 @@ import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import java.util.UUID;
 
 public class InventoryManagerClient extends InventoryManager {
-
-    protected final LoadingCache<UUID, InventoryCosArmor> ClientCache = CacheBuilder.newBuilder().build(new CacheLoader<UUID, InventoryCosArmor>() {
-
+    protected final LoadingCache<UUID, InventoryCosArmor> ClientCache = CacheBuilder.newBuilder().build(new CacheLoader<>() {
         @Override
-        public InventoryCosArmor load(UUID key) throws Exception {
+        public InventoryCosArmor load(UUID key) {
             return new InventoryCosArmor();
         }
-
     });
 
     @Override

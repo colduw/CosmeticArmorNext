@@ -57,7 +57,7 @@ tasks.named('jar', Jar).configure {
     }
 }
 
-task apiZip(type: Jar) {
+tasks.register('apiZip', Jar) {
     from(sourceSets.main.java) {
         include "lain/mods/cos/api/**"
     }
@@ -106,7 +106,7 @@ sourceSets.each {
 publishMods {
     file = jar.archiveFile
     displayName = "${jar.archiveFileName.get()}"
-    changelog = ""
+    changelog = rootProject.file('CHANGELOG.md').text
     type = STABLE
     modLoaders.add("forge")
 

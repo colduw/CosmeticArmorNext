@@ -3,9 +3,6 @@ package lain.mods.cos.api.inventory;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.Tag;
-import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -46,25 +43,21 @@ public class CAStacksBase extends ItemStackHandler {
         setSize(nbt.getInt("Size").orElse(stacks.size()));
         nbt.getList("Items").ifPresent(tagList -> {
             for (int i = 0; i < tagList.size(); i++) {
-                tagList.getCompound(i).ifPresent(itemTags -> {
-                    itemTags.getInt("Slot").ifPresent(slot -> {
-                        if (slot >= 0 && slot < stacks.size()) {
-                            itemTags.read("cosmeticArmorStack", ItemStack.CODEC).ifPresent(stack -> stacks.set(slot, stack));
+                tagList.getCompound(i).ifPresent(itemTags -> itemTags.getInt("Slot").ifPresent(slot -> {
+                    if (slot >= 0 && slot < stacks.size()) {
+                        itemTags.read("cosmeticArmorStack", ItemStack.CODEC).ifPresent(stack -> stacks.set(slot, stack));
 
-                            itemTags.getBoolean("isSkinArmor").ifPresent(b -> isSkinArmor[slot] = b);
-                        }
-                    });
-                });
+                        itemTags.getBoolean("isSkinArmor").ifPresent(b -> isSkinArmor[slot] = b);
+                    }
+                }));
             }
         });
         hidden.clear();
-        nbt.getString("Hidden").ifPresent(h -> {
-            Arrays.stream(h.split("\0")).forEach(str -> {
-                int i = str.indexOf(":");
-                if (i != -1)
-                    hidden.computeIfAbsent(str.substring(0, i), key -> new HashSet<>()).add(str.substring(i + 1));
-            });
-        });
+        nbt.getString("Hidden").ifPresent(h -> Arrays.stream(h.split("\0")).forEach(str -> {
+            int i = str.indexOf(":");
+            if (i != -1)
+                hidden.computeIfAbsent(str.substring(0, i), key -> new HashSet<>()).add(str.substring(i + 1));
+        }));
         onLoad();
     }
 
