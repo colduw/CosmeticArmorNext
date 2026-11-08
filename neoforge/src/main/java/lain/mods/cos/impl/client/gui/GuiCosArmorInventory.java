@@ -22,8 +22,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosArmor> {
+    public static final ResourceLocation INVENTORY = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
+    public static final ResourceLocation SLOT = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
+    public static final ResourceLocation COSARMOR_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
+    public static final ResourceLocation COSARMOR_TOGGLE_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
 
-    public static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmorinventory.png");
     private final EffectsInInventory effects;
     public float oldMouseX;
     public float oldMouseY;
@@ -94,7 +97,10 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
     protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
         int i = leftPos;
         int j = topPos;
-        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, i, j, 0, 0, imageWidth, imageHeight, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, INVENTORY, i, j, 0, 0, imageWidth, imageHeight, 256, 256);
+        for (int k = 0; k < 4; k++) {
+            graphics.blit(RenderPipelines.GUI_TEXTURED, SLOT, getGuiLeft() + 97 + k * 18, getGuiTop() + 61, 0, 0, 18, 18, 18, 18);
+        }
         if (useMousePos) {
             oldMouseX = (float) mouseX;
             oldMouseY = (float) mouseY;

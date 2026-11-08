@@ -20,7 +20,7 @@ public class GuiCosArmorButton extends Button implements IShiftingWidget, ICreat
     @Override
     public void renderContents(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         boolean state = isHoveredOrFocused();
-        graphics.blit(RenderPipelines.GUI_TEXTURED, GuiCosArmorInventory.TEXTURE, getX(), getY(), state ? 10 : 0, 166, 10, 10, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, GuiCosArmorInventory.COSARMOR_BUTTON, getX(), getY(), state ? 10 : 0, 0, 8, 7, 18, 7);
         if (state)
             graphics.drawCenteredString(Minecraft.getInstance().font, getMessage(), getX() + 5, getY() + height, 0xffffffff);
     }
