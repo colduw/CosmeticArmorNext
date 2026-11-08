@@ -21,10 +21,10 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosArmor> {
-    public static final ResourceLocation INVENTORY = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
-    public static final ResourceLocation SLOT = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
-    public static final ResourceLocation COSARMOR_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
-    public static final ResourceLocation COSARMOR_TOGGLE_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
+    public static final Identifier INVENTORY = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
+    public static final Identifier SLOT = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
+    public static final Identifier COSARMOR_BUTTON = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
+    public static final Identifier COSARMOR_TOGGLE_BUTTON = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
 
     private final EffectsInInventory effects;
     public float oldMouseX;
