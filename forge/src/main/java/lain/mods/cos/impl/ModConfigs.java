@@ -30,10 +30,10 @@ public class ModConfigs {
                         .define("CosArmorGuiButton_Hidden", false);
                 CosArmorGuiButton_Left = comment("The horizontal pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorGuiButton_Left")
-                        .defineInRange("CosArmorGuiButton_Left", 65, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                        .defineInRange("CosArmorGuiButton_Left", 66, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 CosArmorGuiButton_Top = comment("The vertical pixel distance from the origin point of player inventoy gui")
                         .translation("cos.config.CosArmorGuiButton_Top")
-                        .defineInRange("CosArmorGuiButton_Top", 67, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                        .defineInRange("CosArmorGuiButton_Top", 69, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 CosArmorToggleButton_Hidden = comment("Whether or not to hide the button for toggling the mod temporarily on client side")
                         .translation("cos.config.CosArmorToggleButton_Hidden")
                         .define("CosArmorToggleButton_Hidden", false);
@@ -48,10 +48,10 @@ public class ModConfigs {
                         .define("CosArmorCreativeGuiButton_Hidden", false);
                 CosArmorCreativeGuiButton_Left = comment("The horizontal pixel distance from the origin point of creative inventory gui")
                         .translation("cos.config.CosArmorCreativeGuiButton_Left")
-                        .defineInRange("CosArmorCreativeGuiButton_Left", 95, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                        .defineInRange("CosArmorCreativeGuiButton_Left", 96, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 CosArmorCreativeGuiButton_Top = comment("The vertical pixel distance from the origin point of creative inventoy gui")
                         .translation("cos.config.CosArmorCreativeGuiButton_Top")
-                        .defineInRange("CosArmorCreativeGuiButton_Top", 38, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                        .defineInRange("CosArmorCreativeGuiButton_Top", 40, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 pop();
             }
         }.build());
