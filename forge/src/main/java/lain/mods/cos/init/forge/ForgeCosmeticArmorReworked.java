@@ -7,6 +7,7 @@ import lain.mods.cos.impl.client.KeyHandler;
 import lain.mods.cos.impl.client.PlayerRenderHandler;
 import lain.mods.cos.impl.inventory.ContainerCosArmor;
 import lain.mods.cos.impl.network.packet.*;
+import lain.mods.cos.init.ModConstants;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -20,11 +21,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod("cosmeticarmorreworked")
+@Mod(ModConstants.MODID)
 public class ForgeCosmeticArmorReworked {
-
-    private static final DeferredRegister<MenuType<?>> MENU = DeferredRegister.create(ForgeRegistries.Keys.MENU_TYPES, "cosmeticarmorreworked");
-
+    private static final DeferredRegister<MenuType<?>> MENU = DeferredRegister.create(ForgeRegistries.Keys.MENU_TYPES, ModConstants.MODID);
     public static final RegistryObject<MenuType<ContainerCosArmor>> typeContainerCosArmor = MENU.register("inventorycosarmor", () -> IForgeMenuType.create(ModObjects.invMan::createContainerClient));
 
     public ForgeCosmeticArmorReworked(FMLJavaModLoadingContext context) {
