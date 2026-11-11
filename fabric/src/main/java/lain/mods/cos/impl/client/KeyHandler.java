@@ -19,7 +19,7 @@ public enum KeyHandler {
     private void handleClientTick(Minecraft mc) {
         if (!mc.isWindowActive())
             return;
-        if (keyOpenCosArmorInventory.consumeClick() && !(mc.screen instanceof GuiCosArmorInventory))
+        if (keyOpenCosArmorInventory.consumeClick() && !(mc.gui.screen() instanceof GuiCosArmorInventory))
             ClientPlayNetworking.send(new PayloadOpenCosArmorInventory());
     }
 
