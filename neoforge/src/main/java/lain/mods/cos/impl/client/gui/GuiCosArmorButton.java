@@ -22,7 +22,7 @@ public class GuiCosArmorButton extends Button implements IShiftingWidget, ICreat
         boolean state = isHoveredOrFocused();
         graphics.blit(RenderPipelines.GUI_TEXTURED, GuiCosArmorInventory.COSARMOR_BUTTON, getX(), getY(), state ? 10 : 0, 0, 8, 7, 18, 7);
         if (state)
-            graphics.drawCenteredString(Minecraft.getInstance().font, getMessage(), getX() + 5, getY() + height, 0xffffffff);
+            graphics.drawCenteredString(Minecraft.getInstance().font, getMessage(), getX() + 4, getY() + height, 0xffffffff);
     }
 
     @Override
