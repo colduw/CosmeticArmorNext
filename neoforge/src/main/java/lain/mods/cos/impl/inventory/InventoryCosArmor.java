@@ -68,10 +68,10 @@ public class InventoryCosArmor extends CAStacksBase implements Container, MenuPr
         return stacks.size();
     }
 
-//    @Override
-//    public ItemStack getStackInSlot(int slot) {
-//        return super.getStackInSlot(slot);
-//    }
+    @Override
+    public ItemStack getStackInSlot(int slot) {
+        return super.getStackInSlot(slot);
+    }
 
     @Override
     public boolean isEmpty() {
