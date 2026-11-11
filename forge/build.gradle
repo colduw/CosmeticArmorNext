@@ -9,7 +9,7 @@ version = mod_version
 group = mod_group_id
 
 base {
-    archivesName = mod_id + "-forge"
+    archivesName = gradle_build_mod_id + "-forge"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)

@@ -6,6 +6,7 @@ import lain.mods.cos.impl.inventory.ContainerCosArmor;
 import lain.mods.cos.impl.inventory.InventoryCosArmor;
 import lain.mods.cos.impl.network.payload.PayloadSetSkinArmor;
 import lain.mods.cos.init.ModConstants;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.navigation.ScreenPosition;
@@ -18,7 +19,6 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosArmor> {
     public static final ResourceLocation INVENTORY = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
@@ -54,7 +54,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
                 InventoryCosArmor inv = ModObjects.invMan.getCosArmorInventoryClient(minecraft.player.getUUID());
                 inv.setSkinArmor(j, !inv.isSkinArmor(j));
                 ((GuiCosArmorToggleButton) button).state = inv.isSkinArmor(j) ? 1 : 0;
-                PacketDistributor.sendToServer(new PayloadSetSkinArmor(j, inv.isSkinArmor(j)));
+                ClientPlayNetworking.send(new PayloadSetSkinArmor(j, inv.isSkinArmor(j)));
             }));
         }
     }
@@ -98,7 +98,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
         int j = topPos;
         graphics.blit(RenderPipelines.GUI_TEXTURED, INVENTORY, i, j, 0, 0, imageWidth, imageHeight, 256, 256);
         for (int k = 0; k < 4; k++) {
-            graphics.blit(RenderPipelines.GUI_TEXTURED, SLOT, getGuiLeft() + 97 + k * 18, getGuiTop() + 61, 0, 0, 18, 18, 18, 18);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, SLOT, leftPos + 97 + k * 18, topPos + 61, 0, 0, 18, 18, 18, 18);
         }
         if (useMousePos) {
             oldMouseX = (float) mouseX;
@@ -127,5 +127,4 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
             useMousePos = true;
         }
     }
-
 }

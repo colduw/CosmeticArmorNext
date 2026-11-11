@@ -1,10 +1,11 @@
 package lain.mods.cos.api.inventory;
 
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.ValueOutput.ValueOutputList;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -15,30 +16,130 @@ import java.util.stream.Collectors;
  * Changes made to server side CAStacks will be sync to the clients. <br>
  * Do not make changes to client side CAStacks, it is not expected, and can cause problems. <br>
  * <br>
- * This class extends {@link ItemStackHandler}. <br>
- * <br>
  * CosmeticArmorReworked uses 4 slots. <br>
  * Slot 0-3 are {@link net.minecraft.world.entity.EquipmentSlot#FEET FEET}, {@link net.minecraft.world.entity.EquipmentSlot#LEGS LEGS}, {@link net.minecraft.world.entity.EquipmentSlot#CHEST CHEST}, {@link net.minecraft.world.entity.EquipmentSlot#HEAD HEAD}. <br>
  * <br>
  * For toggling visibilities of other mods, use these methods: <br>
  * {@link #setHidden(String, String, boolean) setHidden}, {@link #isHidden(String, String) isHidden}, {@link #forEachHidden(BiConsumer) forEachHidden}.
  */
-public class CAStacksBase extends ItemStackHandler {
-
+public class CAStacksBase {
     protected final Map<String, Set<String>> hidden = new HashMap<>();
-
     protected boolean[] isSkinArmor;
+    protected NonNullList<ItemStack> stacks;
+
+    protected void validateSlotIndex(int slot) {
+        if (slot < 0 || slot >= stacks.size())
+            throw new RuntimeException("Slot " + slot + " not in valid range - [0," + stacks.size() + ")");
+    }
+
+    protected void onLoad() {}
+
+    protected void onContentsChanged(int slot) {}
+
+    public ItemStack getStackInSlot(int slot) {
+        validateSlotIndex(slot);
+        return this.stacks.get(slot);
+    }
+
+    public int getSlots() {
+        return stacks.size();
+    }
+
+    public void setStackInSlot(int slot, ItemStack stack) {
+        validateSlotIndex(slot);
+        this.stacks.set(slot, stack);
+        onContentsChanged(slot);
+    }
+
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+        if (amount == 0)
+            return ItemStack.EMPTY;
+
+        validateSlotIndex(slot);
+
+        ItemStack existing = this.stacks.get(slot);
+
+        if (existing.isEmpty())
+            return ItemStack.EMPTY;
+
+        int toExtract = Math.min(amount, existing.getMaxStackSize());
+
+        if (existing.getCount() <= toExtract) {
+            if (!simulate) {
+                this.stacks.set(slot, ItemStack.EMPTY);
+                onContentsChanged(slot);
+                return existing;
+            } else {
+                return existing.copy();
+            }
+        } else {
+            if (!simulate) {
+                this.stacks.set(slot, existing.copyWithCount(existing.getCount() - toExtract));
+                onContentsChanged(slot);
+            }
+
+            return existing.copyWithCount(toExtract);
+        }
+    }
+
+    public boolean isItemValid(int slot, ItemStack stack) {
+        return true;
+    }
+
+    public int getSlotLimit(int slot) {
+        return Item.ABSOLUTE_MAX_STACK_SIZE;
+    }
+
+    protected int getStackLimit(int slot, ItemStack stack) {
+        return Math.min(getSlotLimit(slot), stack.getMaxStackSize());
+    }
+
+    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+        if (stack.isEmpty())
+            return ItemStack.EMPTY;
+
+        if (!isItemValid(slot, stack))
+            return stack;
+
+        validateSlotIndex(slot);
+
+        ItemStack existing = this.stacks.get(slot);
+
+        int limit = getStackLimit(slot, stack);
+
+        if (!existing.isEmpty()) {
+            if (!ItemStack.isSameItemSameComponents(stack, existing))
+                return stack;
+
+            limit -= existing.getCount();
+        }
+
+        if (limit <= 0)
+            return stack;
+
+        boolean reachedLimit = stack.getCount() > limit;
+
+        if (!simulate) {
+            if (existing.isEmpty()) {
+                this.stacks.set(slot, reachedLimit ? stack.copyWithCount(limit) : stack);
+            } else {
+                existing.grow(reachedLimit ? limit : stack.getCount());
+            }
+            onContentsChanged(slot);
+        }
+
+        return reachedLimit ? stack.copyWithCount(stack.getCount() - limit) : ItemStack.EMPTY;
+    }
 
     public CAStacksBase() {
         this(4);
     }
 
     public CAStacksBase(int size) {
-        super(size);
+        stacks = NonNullList.withSize(size, ItemStack.EMPTY);
         isSkinArmor = new boolean[stacks.size()];
     }
 
-    @Override
     public void deserialize(ValueInput nbt) {
         setSize(nbt.getInt("Size").orElse(stacks.size()));
 
@@ -92,7 +193,6 @@ public class CAStacksBase extends ItemStackHandler {
         return isSkinArmor[slot];
     }
 
-    @Override
     public void serialize(ValueOutput provider) {
         ValueOutputList itemList = provider.childrenList("Items");
         
@@ -132,9 +232,8 @@ public class CAStacksBase extends ItemStackHandler {
             return hidden.getOrDefault(modid, Collections.emptySet()).remove(identifier);
     }
 
-    @Override
     public void setSize(int size) {
-        super.setSize(size);
+        stacks = NonNullList.withSize(size, ItemStack.EMPTY);
         isSkinArmor = new boolean[stacks.size()];
     }
 
@@ -145,5 +244,4 @@ public class CAStacksBase extends ItemStackHandler {
         isSkinArmor[slot] = enabled;
         onContentsChanged(slot);
     }
-
 }

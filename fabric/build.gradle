@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'net.neoforged.gradle.userdev' version '7.1.39'
+    id 'fabric-loom' version '1.13-SNAPSHOT'
     id 'me.modmuss50.mod-publish-plugin' version '2.2.1'
 }
 
@@ -10,14 +10,7 @@ version = mod_version
 group = mod_group_id
 
 base {
-    archivesName = mod_id + "-neoforge"
-}
-
-subsystems {
-    parchment {
-        minecraftVersion = mappings_mc_version
-        mappingsVersion = mappings_version
-    }
+    archivesName = gradle_build_mod_id + "-fabric"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -31,22 +24,31 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+
+    maven { url = 'https://maven.parchmentmc.org/'}
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/${mod_id}.classtweaker")
 }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${mappings_mc_version}:${mappings_version}@zip")
+    }
 
-    implementation "curse.maven:corpse-316582:${corpse_version}"
-    implementation "curse.maven:gravestone-238551:${gravestone_version}"
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation "curse.maven:forge-config-api-port-547434:${fabric_forge_config_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
-            neo_version_range      : neo_version_range,
-            loader_version_range   : loader_version_range,
+            fabric_loader_version  : fabric_loader_version,
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,
@@ -57,7 +59,7 @@ tasks.withType(ProcessResources).configureEach {
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+    filesMatching(['fabric.mod.json']) {
         expand replaceProperties
     }
 }
@@ -80,7 +82,7 @@ artifacts {
     archives apiZip
 }
 
-jar.doLast {
+remapJar.doLast {
     if (System.getenv('SIGNJAR_KEYSTORE') != null) {
         def keystore = File.createTempFile('keystore-', '.jks', getTemporaryDir()).toString()
 
@@ -106,11 +108,11 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 publishMods {
-    file = jar.archiveFile
-    displayName = "${jar.archiveFileName.get()}"
+    file = remapJar.archiveFile
+    displayName = "${remapJar.archiveFileName.get()}"
     changelog = rootProject.file('CHANGELOG.md').text
     type = STABLE
-    modLoaders.add("neoforge")
+    modLoaders.add("fabric")
 
     curseforge {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")

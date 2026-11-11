@@ -3,12 +3,20 @@ package lain.mods.cos.impl;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.mojang.brigadier.CommandDispatcher;
 import lain.mods.cos.api.event.CosArmorDeathDrops;
 import lain.mods.cos.impl.inventory.ContainerCosArmor;
 import lain.mods.cos.impl.inventory.InventoryCosArmor;
 import lain.mods.cos.impl.network.payload.PayloadSyncCosArmor;
 import lain.mods.cos.impl.network.payload.PayloadSyncHiddenFlags;
-import lain.mods.cos.init.neoforge.NeoForgeCosmeticArmorReworked;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +26,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.ProblemReporter;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -28,42 +38,30 @@ import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
 import net.minecraft.world.level.storage.ValueInput;
-import net.neoforged.fml.ModList;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
-import net.neoforged.neoforge.event.server.ServerStoppingEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.util.Collection;
 import java.util.Random;
 import java.util.UUID;
 
 public class InventoryManager {
-
     protected static final InventoryCosArmor Dummy = new InventoryCosArmor() {
-
         @Override
-        @Nonnull
+        @NotNull
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
             return ItemStack.EMPTY;
         }
 
         @Override
-        @Nonnull
+        @NotNull
         public ItemStack getStackInSlot(int slot) {
             return ItemStack.EMPTY;
         }
 
         @Override
-        @Nonnull
-        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+        @NotNull
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             return stack;
         }
 
@@ -95,7 +93,7 @@ public class InventoryManager {
         }
 
         @Override
-        public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+        public void setStackInSlot(int slot, @NotNull ItemStack stack) {
         }
 
         @Override
@@ -105,10 +103,10 @@ public class InventoryManager {
         @Override
         public void setUpdateListener(HiddenFlagsChangeListener listener) {
         }
-
     };
 
     protected static final Random RANDOM = new Random();
+    protected MinecraftServer server;
 
     protected final LoadingCache<UUID, InventoryCosArmor> CommonCache = CacheBuilder.newBuilder().build(new CacheLoader<>() {
 
@@ -124,7 +122,7 @@ public class InventoryManager {
     });
 
     public static boolean checkIdentifier(String modid, String identifier) {
-        if (modid == null || modid.isEmpty() || identifier == null || identifier.isEmpty() || !ModList.get().isLoaded(modid))
+        if (modid == null || modid.isEmpty() || identifier == null || identifier.isEmpty() || !FabricLoader.getInstance().isModLoaded(modid))
             return false;
 
         return false;
@@ -134,44 +132,41 @@ public class InventoryManager {
         throw new UnsupportedOperationException();
     }
 
-    @Nonnull
+    @NotNull
     public InventoryCosArmor getCosArmorInventory(UUID uuid) {
         if (uuid == null)
             return Dummy;
         return CommonCache.getUnchecked(uuid);
     }
 
-    @Nonnull
+    @NotNull
     public InventoryCosArmor getCosArmorInventoryClient(UUID uuid) {
         throw new UnsupportedOperationException();
     }
 
     protected File getDataFile(UUID uuid) {
-        return new File(ServerLifecycleHooks.getCurrentServer().getWorldPath(LevelResource.PLAYER_DATA_DIR).toFile(), uuid + ".cosarmor");
+        return new File(server.getWorldPath(LevelResource.PLAYER_DATA_DIR).toFile(), uuid + ".cosarmor");
     }
 
-    private void handlePlayerDrops(LivingDropsEvent event) {
-        if (event.getEntity() instanceof Player) {
-            if (event.getEntity().isEffectiveAi() && !((ServerLevel) event.getEntity().level()).getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !ModConfigs.CosArmorKeepThroughDeath.get()) {
-                InventoryCosArmor inv = getCosArmorInventory(event.getEntity().getUUID());
-                if (NeoForge.EVENT_BUS.post(new CosArmorDeathDrops((Player) event.getEntity(), inv)).isCanceled())
+    private void handlePlayerDrops(LivingEntity event, DamageSource source) {
+        if (event instanceof Player) {
+            if (event.isEffectiveAi() && !((ServerLevel) event.level()).getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !ModConfigs.CosArmorKeepThroughDeath.get()) {
+                InventoryCosArmor inv = getCosArmorInventory(event.getUUID());
+                if (CosArmorDeathDrops.EVENT_BUS.invoker().post((Player) event, inv)) {
                     return;
+                }
                 for (int i = 0; i < inv.getSlots(); i++) {
                     ItemStack stack = inv.getStackInSlot(i).copy();
                     if (stack.isEmpty())
                         continue;
 
-                    if (ModList.get().isLoaded("corpse") || ModList.get().isLoaded("gravestone")) {
-                        stack.set(NeoForgeCosmeticArmorReworked.SLOT_PLACEBACK.get(), i);
-                    }
-
                     float fX = RANDOM.nextFloat() * 0.75F + 0.125F;
                     float fY = RANDOM.nextFloat() * 0.75F;
                     float fZ = RANDOM.nextFloat() * 0.75F + 0.125F;
                     while (!stack.isEmpty()) {
-                        ItemEntity entity = new ItemEntity(event.getEntity().level(), event.getEntity().getX() + (double) fX, event.getEntity().getY() + (double) fY, event.getEntity().getZ() + (double) fZ, stack.split(RANDOM.nextInt(21) + 10));
+                        ItemEntity entity = new ItemEntity(event.level(), event.getX() + (double) fX, event.getY() + (double) fY, event.getZ() + (double) fZ, stack.split(RANDOM.nextInt(21) + 10));
                         entity.setDeltaMovement(RANDOM.nextGaussian() * (double) 0.05F, RANDOM.nextGaussian() * (double) 0.05F + (double) 0.2F, RANDOM.nextGaussian() * (double) 0.05F);
-                        event.getDrops().add(entity);
+                        event.level().addFreshEntity(entity);
                     }
 
                     inv.setStackInSlot(i, ItemStack.EMPTY);
@@ -180,34 +175,34 @@ public class InventoryManager {
         }
     }
 
-    private void handlePlayerLoggedIn(PlayerLoggedInEvent event) {
-        CommonCache.invalidate(event.getEntity().getUUID());
-        getCosArmorInventory(event.getEntity().getUUID());
+    private void handlePlayerLoggedIn(ServerPlayer event) {
+        CommonCache.invalidate(event.getUUID());
+        getCosArmorInventory(event.getUUID());
 
-        if (event.getEntity() instanceof ServerPlayer player) {
-            for (ServerPlayer other : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
+        if (event instanceof ServerPlayer player) {
+            for (ServerPlayer other : server.getPlayerList().getPlayers()) {
                 if (other == player)
                     continue;
                 UUID uuid = other.getUUID();
                 InventoryCosArmor inv = getCosArmorInventory(uuid);
                 for (int i = 0; i < inv.getSlots(); i++)
-                    PacketDistributor.sendToPlayer(player, new PayloadSyncCosArmor(uuid, inv, i));
-                inv.forEachHidden((modid, identifier) -> PacketDistributor.sendToPlayer(player, new PayloadSyncHiddenFlags(uuid, inv, modid, identifier)));
+                    ServerPlayNetworking.send(player, new PayloadSyncCosArmor(uuid, inv, i));
+                inv.forEachHidden((modid, identifier) -> ServerPlayNetworking.send(player, new PayloadSyncHiddenFlags(uuid, inv, modid, identifier)));
             }
         }
     }
 
-    private void handlePlayerLoggedOut(PlayerLoggedOutEvent event) {
-        UUID uuid;
-        InventoryCosArmor inv;
-        if ((inv = CommonCache.getIfPresent(uuid = event.getEntity().getUUID())) != null) {
+    private void handlePlayerLoggedOut(ServerPlayer event) {
+        UUID uuid = event.getUUID();
+        InventoryCosArmor inv = CommonCache.getIfPresent(uuid);
+        if (inv != null) {
             saveInventory(uuid, inv);
             CommonCache.invalidate(uuid);
         }
     }
 
-    private void handleRegisterCommands(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("clearcosarmor").requires(s -> s.hasPermission(2)).executes(s -> {
+    private void handleRegisterCommands(CommandDispatcher<CommandSourceStack> event, CommandBuildContext commandBuildContext, Commands.CommandSelection commandSelection) {
+        event.register(Commands.literal("clearcosarmor").requires(s -> s.hasPermission(2)).executes(s -> {
             int count = 0;
             ServerPlayer player = s.getSource().getPlayerOrException();
             InventoryCosArmor inv = getCosArmorInventory(player.getUUID());
@@ -235,7 +230,7 @@ public class InventoryManager {
         })));
 
         if (!ModConfigs.CosArmorDisableCosHatCommand.get()) {
-            event.getDispatcher().register(Commands.literal("coshat").requires(s -> s.hasPermission(0)).executes(s -> {
+            event.register(Commands.literal("coshat").requires(s -> s.hasPermission(0)).executes(s -> {
                 ServerPlayer player = s.getSource().getPlayerOrException();
                 InventoryCosArmor inv = getCosArmorInventory(player.getUUID());
                 ItemStack stack1 = player.getItemBySlot(EquipmentSlot.MAINHAND);
@@ -247,19 +242,12 @@ public class InventoryManager {
         }
     }
 
-    private void handleSaveToFile(PlayerEvent.SaveToFile event) {
-        UUID uuid;
-        InventoryCosArmor inv;
-        if ((inv = CommonCache.getIfPresent(uuid = UUID.fromString(event.getPlayerUUID()))) != null)
-            saveInventory(uuid, inv);
+    private void handleSaveToFile(MinecraftServer server, boolean flush, boolean force) {
+        CommonCache.asMap().forEach(this::saveInventory);
     }
 
-    private void handleServerStopping(ServerStoppingEvent event) {
-        ModObjects.logger.debug("Server is stopping... try to save all still loaded CosmeticArmor data");
-        CommonCache.asMap().forEach((key, value) -> {
-            ModObjects.logger.debug(key);
-            saveInventory(key, value);
-        });
+    private void handleServerStopping(MinecraftServer event) {
+        CommonCache.asMap().forEach(this::saveInventory);
         CommonCache.invalidateAll();
     }
 
@@ -273,7 +261,7 @@ public class InventoryManager {
             if ((file = getDataFile(uuid)).exists()) {
                 CompoundTag fileData = NbtIo.read(file.toPath());
 
-                ValueInput cosData = TagValueInput.create(ProblemReporter.DISCARDING, ServerLifecycleHooks.getCurrentServer().registryAccess(), fileData);
+                ValueInput cosData = TagValueInput.create(ProblemReporter.DISCARDING, server.registryAccess(), fileData);
 
                 inventory.deserialize(cosData);
             }
@@ -283,28 +271,30 @@ public class InventoryManager {
     }
 
     protected void onHiddenFlagsChanged(UUID uuid, InventoryCosArmor inventory, String modid, String identifier) {
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server.isDedicatedServer())
-            PacketDistributor.sendToAllPlayers(new PayloadSyncHiddenFlags(uuid, inventory, modid, identifier));
-        else
-            server.getPlayerList().getPlayers().forEach(player -> PacketDistributor.sendToPlayer(player, new PayloadSyncHiddenFlags(uuid, inventory, modid, identifier)));
+        server.getPlayerList().getPlayers().forEach(player -> ServerPlayNetworking.send(player, new PayloadSyncHiddenFlags(uuid, inventory, modid, identifier)));
     }
 
     protected void onInventoryChanged(UUID uuid, InventoryCosArmor inventory, int slot) {
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server.isDedicatedServer())
-            PacketDistributor.sendToAllPlayers(new PayloadSyncCosArmor(uuid, inventory, slot));
-        else
-            server.getPlayerList().getPlayers().forEach(player -> PacketDistributor.sendToPlayer(player, new PayloadSyncCosArmor(uuid, inventory, slot)));
+        server.getPlayerList().getPlayers().forEach(player -> ServerPlayNetworking.send(player, new PayloadSyncCosArmor(uuid, inventory, slot)));
+    }
+
+    protected void serverStarting(MinecraftServer server) {
+        this.server = server;
+    }
+
+    protected void serverStopped(MinecraftServer server) {
+        this.server = null;
     }
 
     public void registerEvents() {
-        NeoForge.EVENT_BUS.addListener(this::handlePlayerDrops);
-        NeoForge.EVENT_BUS.addListener(this::handlePlayerLoggedIn);
-        NeoForge.EVENT_BUS.addListener(this::handlePlayerLoggedOut);
-        NeoForge.EVENT_BUS.addListener(this::handleSaveToFile);
-        NeoForge.EVENT_BUS.addListener(this::handleRegisterCommands);
-        NeoForge.EVENT_BUS.addListener(this::handleServerStopping);
+        ServerLifecycleEvents.SERVER_STARTING.register(this::serverStarting);
+        ServerLifecycleEvents.SERVER_STOPPED.register(this::serverStopped);
+        ServerLivingEntityEvents.AFTER_DEATH.register(this::handlePlayerDrops);
+        ServerPlayerEvents.JOIN.register(this::handlePlayerLoggedIn);
+        ServerPlayerEvents.LEAVE.register(this::handlePlayerLoggedOut);
+        ServerLifecycleEvents.AFTER_SAVE.register(this::handleSaveToFile);
+        CommandRegistrationCallback.EVENT.register(this::handleRegisterCommands);
+        ServerLifecycleEvents.SERVER_STOPPING.register(this::handleServerStopping);
     }
 
     public void registerEventsClient() {
@@ -316,7 +306,7 @@ public class InventoryManager {
             return;
         }
         try {
-            TagValueOutput cosData = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, ServerLifecycleHooks.getCurrentServer().registryAccess());
+            TagValueOutput cosData = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, server.registryAccess());
 
             inventory.serialize(cosData);
 
@@ -325,5 +315,4 @@ public class InventoryManager {
             ModObjects.logger.fatal("Failed to save CosmeticArmor data", t);
         }
     }
-
 }

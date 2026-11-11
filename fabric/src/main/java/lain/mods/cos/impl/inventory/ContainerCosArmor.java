@@ -1,6 +1,8 @@
 package lain.mods.cos.impl.inventory;
 
 import lain.mods.cos.impl.ModObjects;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -17,10 +19,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,7 +60,7 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
 
                 @Override
                 @Nullable
-                @OnlyIn(Dist.CLIENT)
+                @Environment(EnvType.CLIENT)
                 public ResourceLocation getNoItemIcon() {
                     return TEXTURE_EMPTY_SLOTS.get(equipmentslottype);
                 }
@@ -72,9 +72,8 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
 
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.canEquip(equipmentslottype, player);
+                    return player.isEquippableInSlot(stack, equipmentslottype);
                 }
-
             });
         }
 
@@ -92,7 +91,7 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
 
             @Override
             @Nullable
-            @OnlyIn(Dist.CLIENT)
+            @Environment(EnvType.CLIENT)
             public ResourceLocation getNoItemIcon() {
                 return InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD;
             }
@@ -106,7 +105,7 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
 
                 @Override
                 @Nullable
-                @OnlyIn(Dist.CLIENT)
+                @Environment(EnvType.CLIENT)
                 public ResourceLocation getNoItemIcon() {
                     return TEXTURE_EMPTY_SLOTS.get(equipmentslottype);
                 }
@@ -118,9 +117,8 @@ public class ContainerCosArmor extends AbstractCraftingMenu {
 
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return stack.canEquip(equipmentslottype, player);
+                    return player.isEquippableInSlot(stack, equipmentslottype);
                 }
-
             });
         }
     }

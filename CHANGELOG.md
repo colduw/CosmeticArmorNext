@@ -1,24 +1,9 @@
-# [v4] - 2026.11.08
+# [v4] - 2026.11.11
 
-### Kinda breaking change
+Fabric release from NeoForge build, and also:
 
-- Added compatibility to resource packs that modify the inventory / slot appearance
-
-tldr:
-
-Delete `config/cosmeticarmorreworked-client.toml`, or, (assuming default config)
-
-- change `CosArmorGuiButton_Left` to `66` (add 1)
-- change `CosArmorGuiButton_Top` to `69` (add 2)
-- change `CosArmorCreativeGuiButton_Left` to `96` (add 1)
-- change `CosArmorCreativeGuiButton_Top` to `40` (add 2)
-
----
-
-actual explanation:
-the old GUI used a slightly modified version of `textures/gui/container/inventory.png`, by adding 4 slots next to the
-offhand item, and having the gui button / toggle buttons
-
-this version separated them to individual images `cosarmor_button.png` and `cosarmor_toggle_button.png` respectively,
-and now uses the base `minecraft` namespace's textures
-(one being the aforementioned inventory.png, other being `textures/gui/sprites/container/slot.png`)
+- Changed keybind category from inventory to an own category.
+- (Neo)Forge Update checker notifications now show up in game chat as well.
+- Changed some formatting on text (CosmeticArmor -> Cosmetic Armor)
+- Builds are now named cosmeticarmornext-[modloader]-[minecraft version]-[version].jar
+  - Internally, it will remain called "cosmeticarmorreworked", to keep compatibility with any and all mods that may use the old id.

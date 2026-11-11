@@ -5,13 +5,14 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lain.mods.cos.impl.ModObjects;
 import lain.mods.cos.impl.inventory.InventoryCosArmor;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.state.PlayerRenderState;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -58,12 +59,12 @@ public enum PlayerRenderHandler {
         restoreItems(cache.getUnchecked(player));
     }
 
-    private void handleLoggedOut(ClientPlayerNetworkEvent.LoggingOut event) {
+    private void handleLoggedOut(ClientPacketListener clientPacketListener, Minecraft mc) {
         Disabled = false;
     }
 
     public void registerEvents() {
-        NeoForge.EVENT_BUS.addListener(this::handleLoggedOut);
+        ClientPlayConnectionEvents.DISCONNECT.register(this::handleLoggedOut);
     }
 
     private void restoreItems(Deque<Runnable> queue) {
@@ -76,5 +77,4 @@ public enum PlayerRenderHandler {
             }
         }
     }
-
 }

@@ -1,6 +1,7 @@
 package lain.mods.cos.impl;
 
-import net.neoforged.fml.ModLoadingContext;
+import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
+import lain.mods.cos.init.ModConstants;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
@@ -22,7 +23,7 @@ public class ModConfigs {
     public static BooleanValue CosArmorDisableCosHatCommand;
 
     public static void registerConfigs() {
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.CLIENT, new ModConfigSpec.Builder() {
+        ConfigRegistry.INSTANCE.register(ModConstants.MODID, ModConfig.Type.CLIENT, new ModConfigSpec.Builder() {
             {
                 comment("These settings only affects client").push("Client");
                 CosArmorGuiButton_Hidden = comment("Whether or not to hide the button for opening CosmeticArmorInventory")
@@ -55,7 +56,7 @@ public class ModConfigs {
                 pop();
             }
         }.build());
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, new ModConfigSpec.Builder() {
+        ConfigRegistry.INSTANCE.register(ModConstants.MODID, ModConfig.Type.COMMON, new ModConfigSpec.Builder() {
             {
                 comment("These settings affects both server and client").push("Common");
                 CosArmorKeepThroughDeath = comment("Whether or not to keep items in cosmetic armor slots in the event of player death")

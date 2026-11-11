@@ -1,4 +1,4 @@
-package lain.mods.cos.init.neoforge.mixins;
+package lain.mods.cos.init.fabric.mixins;
 
 import lain.mods.cos.impl.client.PlayerRenderHandler;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerRenderer.class)
 public abstract class MixinPlayerRenderer {
-
     @Inject(method = "extractRenderState", at = @At("HEAD"))
     private void CosArmor_onExtractRenderState(AbstractClientPlayer player, PlayerRenderState state, float partialTicks, CallbackInfo info) {
         PlayerRenderHandler.INSTANCE.onExtractPlayerRenderState(player, state, partialTicks);
