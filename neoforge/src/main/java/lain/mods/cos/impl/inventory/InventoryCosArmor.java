@@ -4,7 +4,6 @@ import lain.mods.cos.api.inventory.CAStacksBase;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.ContainerUser;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -44,10 +43,11 @@ public class InventoryCosArmor extends CAStacksBase implements Container, MenuPr
             return ItemStack.EMPTY;
         }
 
+        ItemStack copy = stack.copy();
         ItemStack splitStack = stack.split(num);
 
         if (!splitStack.isEmpty()) {
-            onContentsChanged(slot, stack);
+            onContentsChanged(slot, copy);
         }
 
         return splitStack;

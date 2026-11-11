@@ -90,11 +90,13 @@ public class CAStacksBase extends ItemStacksResourceHandler {
         return hidden.getOrDefault(modid, Collections.emptySet()).contains(identifier);
     }
 
-    public boolean isSkinArmor(int slot) {
-        if (slot < 0 || slot >= stacks.size()) {
-            throw new IndexOutOfBoundsException("slot is out of bounds in isSkinArmor");
-        }
+    protected void validateSlotIndex(int slot) {
+        if (slot < 0 || slot >= stacks.size())
+            throw new RuntimeException("Slot " + slot + " not in valid range - [0," + stacks.size() + ")");
+    }
 
+    public boolean isSkinArmor(int slot) {
+        validateSlotIndex(slot);
         return isSkinArmor[slot];
     }
 
@@ -144,16 +146,11 @@ public class CAStacksBase extends ItemStacksResourceHandler {
     }
 
     public void setSkinArmor(int slot, boolean enabled) {
-        if (slot < 0 || slot >= stacks.size()) {
-            return;
-        }
-
+        validateSlotIndex(slot);
         if (isSkinArmor[slot] == enabled) {
             return;
         }
-
         isSkinArmor[slot] = enabled;
-        
-        onContentsChanged(slot, getResource(slot).toStack(getAmountAsInt(slot)));
+        onContentsChanged(slot, stacks.get(slot));
     }
 }
