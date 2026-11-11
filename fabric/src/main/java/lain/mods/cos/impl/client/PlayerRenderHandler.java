@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.entity.state.PlayerRenderState;
+import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -28,7 +28,7 @@ public enum PlayerRenderHandler {
         }
     });
 
-    public void onExtractPlayerRenderState(AbstractClientPlayer player, PlayerRenderState state, float partialTicks) {
+    public void onExtractPlayerRenderState(AbstractClientPlayer player, AvatarRenderState state, float partialTicks) {
         Deque<Runnable> queue = cache.getUnchecked(player);
         restoreItems(queue);
         Inventory invPlayer = PlayerInventoryHelper.getPlayerInventory(player);
@@ -55,7 +55,7 @@ public enum PlayerRenderHandler {
         }
     }
 
-    public void onFinishPlayerRenderState(AbstractClientPlayer player, PlayerRenderState state, float partialTicks) {
+    public void onFinishPlayerRenderState(AbstractClientPlayer player, AvatarRenderState state, float partialTicks) {
         restoreItems(cache.getUnchecked(player));
     }
 

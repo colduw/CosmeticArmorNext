@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Open Cosmetic Armor Inventory",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Cosmetic Armor",
   "cos.gui.buttonnormal": "Normal",
   "cos.command.clearcosarmor.success.single": "Removed %s items in cosmetic armor inventory from player %s",

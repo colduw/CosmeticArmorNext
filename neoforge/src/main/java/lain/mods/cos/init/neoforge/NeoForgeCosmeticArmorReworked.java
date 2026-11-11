@@ -92,7 +92,7 @@ public class NeoForgeCosmeticArmorReworked {
         COMPONENTS.register(bus);
         bus.addListener(this::setup);
         bus.addListener(this::setupClient);
-        if (FMLEnvironment.dist.isClient()) {
+        if (FMLEnvironment.getDist().isClient()) {
             NeoForge.EVENT_BUS.addListener(this::checkClientUpdate);
             bus.addListener(this::setupKeyMappings);
             bus.addListener(this::setupMenuScreens);
@@ -113,6 +113,7 @@ public class NeoForgeCosmeticArmorReworked {
     }
 
     private void setupKeyMappings(RegisterKeyMappingsEvent event) {
+        event.registerCategory(KeyHandler.INSTANCE.keyOpenCosArmorCategory);
         KeyHandler.INSTANCE.registerKeyMappings(event::register);
     }
 
