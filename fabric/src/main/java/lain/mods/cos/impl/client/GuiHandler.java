@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -24,10 +24,10 @@ public enum GuiHandler {
     private boolean lastInventoryOpen;
 
     private void handleGuiDrawPreInit(Minecraft mc, Screen event, int scaledWidth, int scaledHeight) {
-        ScreenEvents.beforeRender(event).register(this::handleGuiDrawPre);
+        ScreenEvents.beforeExtract(event).register(this::handleGuiDrawPre);
     }
 
-    private void handleGuiDrawPre(Screen event, GuiGraphics drawContext, int mouseX, int mouseY, float tickDelta) {
+    private void handleGuiDrawPre(Screen event, GuiGraphicsExtractor drawContext, int mouseX, int mouseY, float tickDelta) {
         if (event instanceof AbstractContainerScreen<?> screen) {
             if (lastLeft != screen.leftPos) {
                 int diffLeft = screen.leftPos - lastLeft;
@@ -54,7 +54,7 @@ public enum GuiHandler {
             AbstractContainerScreen<?> screen = (AbstractContainerScreen<?>) event;
 
             if (!ModConfigs.CosArmorGuiButton_Hidden.get()) {
-                Screens.getButtons(screen).add(new GuiCosArmorButton(
+                Screens.getWidgets(screen).add(new GuiCosArmorButton(
                         screen.leftPos + ModConfigs.CosArmorGuiButton_Left.get()/* 65 */,
                         screen.topPos + ModConfigs.CosArmorGuiButton_Top.get()/* 67 */,
                         10, 10,
@@ -75,7 +75,7 @@ public enum GuiHandler {
                         null));
             }
             if (!ModConfigs.CosArmorToggleButton_Hidden.get()) {
-                Screens.getButtons(screen).add(new GuiCosArmorToggleButton(
+                Screens.getWidgets(screen).add(new GuiCosArmorToggleButton(
                         screen.leftPos + ModConfigs.CosArmorToggleButton_Left.get()/* 59 */,
                         screen.topPos + ModConfigs.CosArmorToggleButton_Top.get()/* 72 */,
                         5, 5,
@@ -88,7 +88,7 @@ public enum GuiHandler {
             }
         } else if (event instanceof CreativeModeInventoryScreen screen) {
             if (!ModConfigs.CosArmorCreativeGuiButton_Hidden.get()) {
-                Screens.getButtons(screen).add(new GuiCosArmorButton(
+                Screens.getWidgets(screen).add(new GuiCosArmorButton(
                         /*screen.leftPos + */ModConfigs.CosArmorCreativeGuiButton_Left.get()/* 95 */,
                         screen.topPos + ModConfigs.CosArmorCreativeGuiButton_Top.get()/* 38 */,
                         10, 10,

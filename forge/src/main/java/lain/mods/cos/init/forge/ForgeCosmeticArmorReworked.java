@@ -36,7 +36,7 @@ public class ForgeCosmeticArmorReworked {
     public static final RegistryObject<MenuType<ContainerCosArmor>> typeContainerCosArmor = MENU.register("inventorycosarmor", () -> IForgeMenuType.create(ModObjects.invMan::createContainerClient));
 
     protected void checkClientUpdate(ClientPlayerNetworkEvent.LoggingIn event) {
-        var tempContainer = ModList.get().getModContainerById(ModConstants.MODID);
+        var tempContainer = ModList.getModContainerById(ModConstants.MODID);
         if (tempContainer.isEmpty()) {
             return;
         }
@@ -45,31 +45,31 @@ public class ForgeCosmeticArmorReworked {
         VersionChecker.CheckResult result = VersionChecker.getResult(container.getModInfo());
 
         switch (result.status()) {
-            case AHEAD -> event.getPlayer().displayClientMessage(
+            case AHEAD -> event.getPlayer().sendSystemMessage(
                     Component.translatable("cos.init.update.ahead",
                             Component.literal(container.getModInfo().getVersion().toString()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
-                    ), false
+                    )
             );
-            case UP_TO_DATE -> event.getPlayer().displayClientMessage(
+            case UP_TO_DATE -> event.getPlayer().sendSystemMessage(
                     Component.translatable("cos.init.update.latest",
                             Component.literal(container.getModInfo().getVersion().toString()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
-                    ), false
+                    )
             );
-            case BETA_OUTDATED, OUTDATED -> event.getPlayer().displayClientMessage(
+            case BETA_OUTDATED, OUTDATED -> event.getPlayer().sendSystemMessage(
                     Component.translatable("cos.init.update.behind",
                                     Component.literal(container.getModInfo().getVersion().toString()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD),
                                     Component.literal(result.target().toString()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD),
                                     Component.literal("Click here to open the CurseForge page").withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
                                             .withStyle(c->c.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-next"))))
                             )
-                            .withStyle(ChatFormatting.GOLD), false
+                            .withStyle(ChatFormatting.GOLD)
             );
-            case FAILED -> event.getPlayer().displayClientMessage(
+            case FAILED -> event.getPlayer().sendSystemMessage(
                     Component.translatable("cos.init.update.error",
                             Component.literal("check latest.log"), // does NOT store the ex message, only in logs.
                             Component.literal("Click here to open the CurseForge page").withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
                                     .withStyle(c->c.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-next"))))
-                    ).withStyle(ChatFormatting.RED), false
+                    ).withStyle(ChatFormatting.RED)
             );
         }
     }

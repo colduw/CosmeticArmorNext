@@ -22,13 +22,13 @@ public class ModPayloads {
     }
 
     public static void setupServer() {
-        PayloadTypeRegistry.playS2C().register(PayloadSyncCosArmor.TYPE, PayloadSyncCosArmor.STREAM_CODEC);
-        PayloadTypeRegistry.playS2C().register(PayloadSyncHiddenFlags.TYPE, PayloadSyncHiddenFlags.STREAM_CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(PayloadSyncCosArmor.TYPE, PayloadSyncCosArmor.STREAM_CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(PayloadSyncHiddenFlags.TYPE, PayloadSyncHiddenFlags.STREAM_CODEC);
 
-        PayloadTypeRegistry.playC2S().register(PayloadSetSkinArmor.TYPE, PayloadSetSkinArmor.STREAM_CODEC);
-        PayloadTypeRegistry.playC2S().register(PayloadOpenCosArmorInventory.TYPE, PayloadOpenCosArmorInventory.STREAM_CODEC);
-        PayloadTypeRegistry.playC2S().register(PayloadOpenNormalInventory.TYPE, PayloadOpenNormalInventory.STREAM_CODEC);
-        PayloadTypeRegistry.playC2S().register(PayloadSetHiddenFlags.TYPE, PayloadSetHiddenFlags.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(PayloadSetSkinArmor.TYPE, PayloadSetSkinArmor.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(PayloadOpenCosArmorInventory.TYPE, PayloadOpenCosArmorInventory.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(PayloadOpenNormalInventory.TYPE, PayloadOpenNormalInventory.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(PayloadSetHiddenFlags.TYPE, PayloadSetHiddenFlags.STREAM_CODEC);
 
         ServerPlayNetworking.registerGlobalReceiver(PayloadSetSkinArmor.TYPE, (p, c) -> ModObjects.invMan.getCosArmorInventory(c.player().getUUID()).setSkinArmor(p.slot(), p.isSkinArmor()));
         ServerPlayNetworking.registerGlobalReceiver(PayloadOpenCosArmorInventory.TYPE, (p, c) -> c.player().openMenu(ModObjects.invMan.getCosArmorInventory(c.player().getUUID())));

@@ -9,7 +9,7 @@ import lain.mods.cos.impl.update.UpdateCheck;
 import lain.mods.cos.impl.update.UpdateResult;
 import lain.mods.cos.init.ModConstants;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.ChatFormatting;
@@ -27,44 +27,44 @@ public class FabricCosmeticArmorReworkedClient implements ClientModInitializer {
         if (updateResult != null && client.player != null) {
             ModObjects.logger.info("Cosmetic Armor Next version {}. (from version JSON): latest: {}, recommended: {}", updateResult.currentVersion(), updateResult.latestVersion(), updateResult.recommendedVersion());
             switch (updateResult.verStates()) {
-                case AHEAD -> client.player.displayClientMessage(
+                case AHEAD -> client.player.sendSystemMessage(
                         Component.translatable("cos.init.update.ahead",
                                 Component.literal(updateResult.currentVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
-                        ), false
+                        )
                 );
-                case LATEST -> client.player.displayClientMessage(
+                case LATEST -> client.player.sendSystemMessage(
                         Component.translatable("cos.init.update.latest",
                                 Component.literal(updateResult.latestVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
-                        ), false
+                        )
                 );
-                case RECOMMENDED -> client.player.displayClientMessage(
+                case RECOMMENDED -> client.player.sendSystemMessage(
                         Component.translatable("cos.init.update.recommended",
                                 Component.literal(updateResult.latestVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
-                        ), false
+                        )
                 );
-                case BEHIND_LATEST_AHEAD_RECOMMENDED -> client.player.displayClientMessage(
+                case BEHIND_LATEST_AHEAD_RECOMMENDED -> client.player.sendSystemMessage(
                         Component.translatable("cos.init.update.behindlatestaheadrecommended",
                                 Component.literal(updateResult.currentVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD),
                                 Component.literal(updateResult.recommendedVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD),
                                 Component.literal("Click here to open the CurseForge page").withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
                                         .withStyle(c->c.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-next"))))
-                        ).withStyle(ChatFormatting.GOLD), false
+                        ).withStyle(ChatFormatting.GOLD)
                 );
-                case BEHIND -> client.player.displayClientMessage(
+                case BEHIND -> client.player.sendSystemMessage(
                         Component.translatable("cos.init.update.behind",
                                 Component.literal(updateResult.currentVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD),
                                 Component.literal(updateResult.latestVersion()).withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD),
                                 Component.literal("Click here to open the CurseForge page").withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
                                         .withStyle(c->c.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-next"))))
                         )
-                        .withStyle(ChatFormatting.GOLD), false
+                        .withStyle(ChatFormatting.GOLD)
                 );
-                case ERROR -> client.player.displayClientMessage(
+                case ERROR -> client.player.sendSystemMessage(
                         Component.translatable("cos.init.update.error",
                                 Component.literal(updateResult.currentVersion()), // stores the ex message
                                 Component.literal("Click here to open the CurseForge page").withStyle(ChatFormatting.LIGHT_PURPLE).withStyle(ChatFormatting.BOLD)
                                         .withStyle(c->c.withClickEvent(new ClickEvent.OpenUrl(URI.create("https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-next"))))
-                        ).withStyle(ChatFormatting.RED), false
+                        ).withStyle(ChatFormatting.RED)
                 );
             }
         }
@@ -79,7 +79,7 @@ public class FabricCosmeticArmorReworkedClient implements ClientModInitializer {
         GuiHandler.INSTANCE.registerEvents();
         KeyHandler.INSTANCE.registerEvents();
         PlayerRenderHandler.INSTANCE.registerEvents();
-        KeyHandler.INSTANCE.registerKeyMappings(KeyBindingHelper::registerKeyBinding);
+        KeyHandler.INSTANCE.registerKeyMappings(KeyMappingHelper::registerKeyMapping);
         GuiHandler.INSTANCE.registerMenuScreens();
         ModPayloads.setupClient();
     }

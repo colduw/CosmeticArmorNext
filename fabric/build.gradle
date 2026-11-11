@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'fabric-loom' version '1.13-SNAPSHOT'
+    id 'net.fabricmc.fabric-loom' version '1.19-SNAPSHOT'
     id 'me.modmuss50.mod-publish-plugin' version '2.2.1'
 }
 
@@ -13,7 +13,7 @@ base {
     archivesName = gradle_build_mod_id + "-fabric"
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
@@ -34,14 +34,10 @@ loom {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${mappings_mc_version}:${mappings_version}@zip")
-    }
 
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
-    modImplementation "curse.maven:forge-config-api-port-547434:${fabric_forge_config_version}"
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    implementation "curse.maven:forge-config-api-port-547434:${fabric_forge_config_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -82,7 +78,7 @@ artifacts {
     archives apiZip
 }
 
-remapJar.doLast {
+jar.doLast {
     if (System.getenv('SIGNJAR_KEYSTORE') != null) {
         def keystore = File.createTempFile('keystore-', '.jks', getTemporaryDir()).toString()
 
@@ -108,8 +104,8 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 publishMods {
-    file = remapJar.archiveFile
-    displayName = "${remapJar.archiveFileName.get()}"
+    file = jar.archiveFile
+    displayName = "${jar.archiveFileName.get()}"
     changelog = rootProject.file('CHANGELOG.md').text
     type = STABLE
     modLoaders.add("fabric")

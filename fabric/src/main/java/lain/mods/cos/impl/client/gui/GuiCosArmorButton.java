@@ -1,7 +1,7 @@
 package lain.mods.cos.impl.client.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -9,7 +9,6 @@ import net.minecraft.network.chat.Component;
 import java.util.function.BiConsumer;
 
 public class GuiCosArmorButton extends Button implements IShiftingWidget, ICreativeInvWidget {
-
     private final BiConsumer<GuiCosArmorButton, Boolean> onCreativeTabChanged;
 
     public GuiCosArmorButton(int x, int y, int width, int height, Component message, Button.OnPress onPress, BiConsumer<GuiCosArmorButton, Boolean> onCreativeTabChanged) {
@@ -18,11 +17,11 @@ public class GuiCosArmorButton extends Button implements IShiftingWidget, ICreat
     }
 
     @Override
-    public void renderContents(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         boolean state = isHoveredOrFocused();
         graphics.blit(RenderPipelines.GUI_TEXTURED, GuiCosArmorInventory.COSARMOR_BUTTON, getX(), getY(), state ? 10 : 0, 0, 8, 7, 18, 7);
         if (state)
-            graphics.drawCenteredString(Minecraft.getInstance().font, getMessage(), getX() + 4, getY() + height, 0xffffffff);
+            graphics.centeredText(Minecraft.getInstance().font, getMessage(), getX() + 4, getY() + height, 0xffffffff);
     }
 
     @Override
