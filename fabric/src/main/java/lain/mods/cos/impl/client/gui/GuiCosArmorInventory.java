@@ -18,14 +18,14 @@ import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosArmor> {
-    public static final ResourceLocation INVENTORY = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
-    public static final ResourceLocation SLOT = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
-    public static final ResourceLocation COSARMOR_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
-    public static final ResourceLocation COSARMOR_TOGGLE_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
+    public static final Identifier INVENTORY = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
+    public static final Identifier SLOT = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
+    public static final Identifier COSARMOR_BUTTON = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
+    public static final Identifier COSARMOR_TOGGLE_BUTTON = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
 
     private final EffectsInInventory effects;
     public float oldMouseX;
@@ -78,7 +78,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         super.render(graphics, mouseX, mouseY, partialTicks);
-        effects.renderEffects(graphics, mouseX, mouseY);
+        effects.render(graphics, mouseX, mouseY);
         oldMouseX = (float) mouseX;
         oldMouseY = (float) mouseY;
     }

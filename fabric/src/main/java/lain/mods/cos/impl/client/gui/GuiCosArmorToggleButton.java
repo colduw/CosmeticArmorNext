@@ -14,7 +14,7 @@ public class GuiCosArmorToggleButton extends Button implements IShiftingWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderContents(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         graphics.blit(RenderPipelines.GUI_TEXTURED, GuiCosArmorInventory.COSARMOR_TOGGLE_BUTTON, getX(), getY(), 5 * state, 0, 5, 5, 10, 5);
     }
 

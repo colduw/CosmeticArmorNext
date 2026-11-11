@@ -8,13 +8,13 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.function.Consumer;
 
 public enum KeyHandler {
     INSTANCE;
-    public final KeyMapping.Category keyOpenCosArmorCategory = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "cos.key.category"));
+    public final KeyMapping.Category keyOpenCosArmorCategory = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(ModConstants.MODID, "cos.key.category"));
     public final KeyMapping keyOpenCosArmorInventory = new KeyMapping("cos.key.opencosarmorinventory", InputConstants.UNKNOWN.getValue(), keyOpenCosArmorCategory);
     private void handleClientTick(Minecraft mc) {
         if (!mc.isWindowActive())

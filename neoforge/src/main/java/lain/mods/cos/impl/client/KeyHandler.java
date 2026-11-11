@@ -6,7 +6,7 @@ import lain.mods.cos.impl.network.payload.PayloadOpenCosArmorInventory;
 import lain.mods.cos.init.ModConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.NeoForge;
@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 public enum KeyHandler {
     INSTANCE;
-    public final KeyMapping.Category keyOpenCosArmorCategory = new KeyMapping.Category(ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "cos.key.category"));
+    public final KeyMapping.Category keyOpenCosArmorCategory = new KeyMapping.Category(Identifier.fromNamespaceAndPath(ModConstants.MODID, "cos.key.category"));
     public final KeyMapping keyOpenCosArmorInventory = new KeyMapping("cos.key.opencosarmorinventory", InputConstants.UNKNOWN.getValue(), keyOpenCosArmorCategory);
     private void handleClientTick(ClientTickEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();

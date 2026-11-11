@@ -25,6 +25,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.Permission;
+import net.minecraft.server.permissions.PermissionLevel;
+import net.minecraft.server.permissions.Permissions;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -33,7 +36,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
@@ -150,7 +153,7 @@ public class InventoryManager {
 
     private void handlePlayerDrops(LivingEntity event, DamageSource source) {
         if (event instanceof Player) {
-            if (event.isEffectiveAi() && !((ServerLevel) event.level()).getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !ModConfigs.CosArmorKeepThroughDeath.get()) {
+            if (event.isEffectiveAi() && !((ServerLevel) event.level()).getGameRules().get(GameRules.KEEP_INVENTORY) && !ModConfigs.CosArmorKeepThroughDeath.get()) {
                 InventoryCosArmor inv = getCosArmorInventory(event.getUUID());
                 if (CosArmorDeathDrops.EVENT_BUS.invoker().post((Player) event, inv)) {
                     return;
@@ -202,7 +205,7 @@ public class InventoryManager {
     }
 
     private void handleRegisterCommands(CommandDispatcher<CommandSourceStack> event, CommandBuildContext commandBuildContext, Commands.CommandSelection commandSelection) {
-        event.register(Commands.literal("clearcosarmor").requires(s -> s.hasPermission(2)).executes(s -> {
+        event.register(Commands.literal("clearcosarmor").requires(s -> s.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER)).executes(s -> {
             int count = 0;
             ServerPlayer player = s.getSource().getPlayerOrException();
             InventoryCosArmor inv = getCosArmorInventory(player.getUUID());
@@ -230,7 +233,7 @@ public class InventoryManager {
         })));
 
         if (!ModConfigs.CosArmorDisableCosHatCommand.get()) {
-            event.register(Commands.literal("coshat").requires(s -> s.hasPermission(0)).executes(s -> {
+            event.register(Commands.literal("coshat").requires(s -> s.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.ALL))).executes(s -> {
                 ServerPlayer player = s.getSource().getPlayerOrException();
                 InventoryCosArmor inv = getCosArmorInventory(player.getUUID());
                 ItemStack stack1 = player.getItemBySlot(EquipmentSlot.MAINHAND);

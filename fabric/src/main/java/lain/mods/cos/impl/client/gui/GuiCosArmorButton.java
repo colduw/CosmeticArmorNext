@@ -18,7 +18,7 @@ public class GuiCosArmorButton extends Button implements IShiftingWidget, ICreat
     }
 
     @Override
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderContents(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         boolean state = isHoveredOrFocused();
         graphics.blit(RenderPipelines.GUI_TEXTURED, GuiCosArmorInventory.COSARMOR_BUTTON, getX(), getY(), state ? 10 : 0, 0, 8, 7, 18, 7);
         if (state)
