@@ -108,7 +108,7 @@ sourceSets.each {
 publishMods {
     file = jar.archiveFile
     displayName = "${jar.archiveFileName.get()}"
-    changelog = rootProject.file('CHANGELOG.md').text
+    changelog = file('CHANGELOG.md').text
     type = STABLE
     modLoaders.add("forge")
 
