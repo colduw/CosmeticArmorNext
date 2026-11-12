@@ -3,6 +3,10 @@ name: Java CI with Gradle
 on:
   workflow_dispatch:
     inputs:
+      modversion:
+        description: "Mod version"
+        type: string
+        required: true
       branch:
         description: "Branch to build against"
         type: choice
@@ -37,24 +41,6 @@ jobs:
       uses: actions/checkout@v7
       with:
         ref: "master-neoforge"
-    
-    - if: ${{ inputs.neoforge }}
-      name: Get version from file (NeoForge)
-      id: get_neoforge_version
-      run: echo "version=$(head -n 1 'neoforge-VERSION')" >> $GITHUB_OUTPUT
-      shell: bash
-
-    - if: ${{ inputs.forge }}
-      name: Get version from file (Forge)
-      id: get_forge_version
-      run: echo "version=$(head -n 1 'forge-VERSION')" >> $GITHUB_OUTPUT
-      shell: bash
-
-    - if: ${{ inputs.fabric }}
-      name: Get version from file (Fabric)
-      id: get_fabric_version
-      run: echo "version=$(head -n 1 'fabric-VERSION')" >> $GITHUB_OUTPUT
-      shell: bash
 
     ######################################################################
 
@@ -80,14 +66,15 @@ jobs:
       name: Build with Gradle Wrapper (NeoForge)
       run: ./gradlew :neoforge:build :neoforge:publishMods
       env:
+        ORG_GRADLE_PROJECT_mod_version: ${{ inputs.branch }}-${{ inputs.modversion }}
         CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
 
     - if: ${{ inputs.neoforge }}
       name: Upload built Jar (NeoForge)
       uses: softprops/action-gh-release@v3
       with:
-        tag_name: "${{ inputs.branch }}-neoforge-${{ steps.get_neoforge_version.outputs.version }}"
-        name: "${{ inputs.branch }} ${{ steps.get_neoforge_version.outputs.version }} NeoForge Release"
+        tag_name: "${{ inputs.branch }}-neoforge-${{ inputs.modversion }}"
+        name: "${{ inputs.branch }} ${{ inputs.modversion }} NeoForge Release"
         target_commitish: ${{ inputs.branch }}
         body_path: CHANGELOG.md
         draft: true
@@ -102,14 +89,15 @@ jobs:
       name: Build with Gradle Wrapper (Forge)
       run: ./gradlew :forge:build :forge:publishMods
       env:
+        ORG_GRADLE_PROJECT_mod_version: ${{ inputs.branch }}-${{ inputs.modversion }}
         CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
 
     - if: ${{ inputs.forge }}
       name: Upload built Jar (Forge)
       uses: softprops/action-gh-release@v3
       with:
-        tag_name: "${{ inputs.branch }}-forge-${{ steps.get_forge_version.outputs.version }}"
-        name: "${{ inputs.branch }} ${{ steps.get_forge_version.outputs.version }} Forge Release"
+        tag_name: "${{ inputs.branch }}-forge-${{ inputs.modversion }}"
+        name: "${{ inputs.branch }} ${{ inputs.modversion }} Forge Release"
         target_commitish: ${{ inputs.branch }}
         body_path: CHANGELOG.md
         draft: true
@@ -124,14 +112,15 @@ jobs:
       name: Build with Gradle Wrapper (Fabric)
       run: ./gradlew :fabric:build :fabric:publishMods
       env:
+        ORG_GRADLE_PROJECT_mod_version: ${{ inputs.branch }}-${{ inputs.modversion }}
         CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
 
     - if: ${{ inputs.fabric }}
       name: Upload built Jar (Fabric)
       uses: softprops/action-gh-release@v3
       with:
-        tag_name: "${{ inputs.branch }}-fabric-${{ steps.get_fabric_version.outputs.version }}"
-        name: "${{ inputs.branch }} ${{ steps.get_fabric_version.outputs.version }} Fabric Release"
+        tag_name: "${{ inputs.branch }}-fabric-${{ inputs.modversion }}"
+        name: "${{ inputs.branch }} ${{ inputs.modversion }} Fabric Release"
         target_commitish: ${{ inputs.branch }}
         body_path: CHANGELOG.md
         draft: true
