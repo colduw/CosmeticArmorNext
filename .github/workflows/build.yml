@@ -69,7 +69,7 @@ jobs:
         tag_name: "${{ inputs.branch }}-neoforge-${{ inputs.modversion }}"
         name: "${{ inputs.branch }} ${{ inputs.modversion }} NeoForge Release"
         target_commitish: ${{ inputs.branch }}
-        body_path: CHANGELOG.md
+        body_path: ./neoforge/CHANGELOG.md
         draft: true
         prerelease: false
         files: |
@@ -92,7 +92,7 @@ jobs:
         tag_name: "${{ inputs.branch }}-forge-${{ inputs.modversion }}"
         name: "${{ inputs.branch }} ${{ inputs.modversion }} Forge Release"
         target_commitish: ${{ inputs.branch }}
-        body_path: CHANGELOG.md
+        body_path: ./forge/CHANGELOG.md
         draft: true
         prerelease: false
         files: |
@@ -115,7 +115,7 @@ jobs:
         tag_name: "${{ inputs.branch }}-fabric-${{ inputs.modversion }}"
         name: "${{ inputs.branch }} ${{ inputs.modversion }} Fabric Release"
         target_commitish: ${{ inputs.branch }}
-        body_path: CHANGELOG.md
+        body_path: ./fabric/CHANGELOG.md
         draft: true
         prerelease: false
         files: |
