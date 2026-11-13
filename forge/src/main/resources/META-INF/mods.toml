@@ -3,7 +3,7 @@ loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 [[mods]]
 modId = "${mod_id}"
-updateJSONURL="${updateURL}"
+updateJSONURL="${updateURLForge}"
 logoFile = "canvs.png"
 version = "${mod_version}"
 displayName = "${mod_name}"
