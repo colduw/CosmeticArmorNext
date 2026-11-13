@@ -21,6 +21,10 @@ repositories {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
+minecraft {
+    accessTransformer = true
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
@@ -33,7 +37,7 @@ tasks.named('processResources', ProcessResources).configure {
             forge_version       : forge_version, forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors         : mod_authors, mod_description: mod_description, updateURL: updateURL
+            mod_authors         : mod_authors, mod_description: mod_description, updateURLForge: updateURLForge
     ]
     inputs.properties replaceProperties
 
@@ -108,7 +112,7 @@ sourceSets.each {
 publishMods {
     file = jar.archiveFile
     displayName = "${jar.archiveFileName.get()}"
-    changelog = rootProject.file('CHANGELOG.md').text
+    changelog = file('CHANGELOG.md').text
     type = STABLE
     modLoaders.add("forge")
 

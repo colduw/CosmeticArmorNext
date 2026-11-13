@@ -3,7 +3,7 @@ loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 [[mods]]
 modId = "${mod_id}"
-updateJSONURL="${updateURL}"
+updateJSONURL="${updateURLNeoForge}"
 logoFile = "canvs.png"
 iconFile = "canvs.png"
 version = "${mod_version}"
@@ -22,3 +22,6 @@ side = "BOTH"
 
 [[mixins]]
 config = "${mod_id}-mixins.json"
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
