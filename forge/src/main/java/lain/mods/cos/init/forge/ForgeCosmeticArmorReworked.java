@@ -43,6 +43,9 @@ public class ForgeCosmeticArmorReworked {
 
         ModContainer container = tempContainer.get();
         VersionChecker.CheckResult result = VersionChecker.getResult(container.getModInfo());
+        if (result == null) {
+            return;
+        }
 
         switch (result.status()) {
             case AHEAD -> event.getPlayer().sendSystemMessage(
