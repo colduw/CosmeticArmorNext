@@ -13,7 +13,7 @@
     "client": ["lain.mods.cos.init.fabric.FabricCosmeticArmorReworkedClient"]
   },
   "custom": {
-    "updateJSONURL": "${updateURL}"
+    "updateJSONURL": "${updateURLFabric}"
   },
   "mixins": [
     "${mod_id}-mixins.json"
