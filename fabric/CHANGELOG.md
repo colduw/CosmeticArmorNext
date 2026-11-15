@@ -1,7 +1,6 @@
-# [v4] - 2026.11.13
+# [v5] - tbd
 
-Fabric release, uses the same branch as NeoForge
-
-- Changed keybind category from inventory to an own category
-- Builds are now named cosmeticarmornext-[modloader]-[minecraft version]-[version].jar
-  - Internally, it will remain called "cosmeticarmorreworked", to keep compatibility with any and all mods that may use the old id
+- Fixed "Ignoring click in mismatching container"
+- Fixed CosArmorDisableRecipeBook, will now properly remove the Recipe Book
+- Fixed some typos in config comments (inventoy -> inventory)
+- Added config screen (accessible via [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu))

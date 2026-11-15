@@ -10,5 +10,19 @@
   "cos.init.update.recommended": "You have the recommended version of Cosmetic Armor Next installed, there is also a newer latest version available: %s.",
   "cos.init.update.behindlatestaheadrecommended": "Your version of Cosmetic Armor Next (%s) is behind the latest, but ahead of the recommended (%s) version. [%s]",
   "cos.init.update.behind": "Your version of Cosmetic Armor Next (%s) is outdated. (Latest: %s). [%s]",
-  "cos.init.update.error": "Could not check for a Cosmetic Armor Next update. (error: %s) [%s]"
+  "cos.init.update.error": "Could not check for a Cosmetic Armor Next update. (error: %s) [%s]",
+  "cosmeticarmorreworked.configuration.Common": "Common (Server & Client) Options",
+  "cosmeticarmorreworked.configuration.Client": "Client Only Options",
+  "cos.config.CosArmorKeepThroughDeath": "Keep Cosmetic Armor on Death",
+  "cos.config.CosArmorDisableRecipeBook": "Disable the Recipe Book",
+  "cos.config.CosArmorDisableCosHatCommand": "Disable the /coshat Command",
+  "cos.config.CosArmorGuiButton_Hidden": "Hide Cosmetic Armor Button",
+  "cos.config.CosArmorGuiButton_Left": "Cosmetic Armor Button Left Position",
+  "cos.config.CosArmorGuiButton_Top": "Cosmetic Armor Button Top Position",
+  "cos.config.CosArmorToggleButton_Hidden": "Hide Cosmetic Armor Toggle Button",
+  "cos.config.CosArmorToggleButton_Left": "Cosmetic Armor Toggle Button Left Position",
+  "cos.config.CosArmorToggleButton_Top": "Cosmetic Armor Toggle Button Top Position",
+  "cos.config.CosArmorCreativeGuiButton_Hidden": "(Creative) Hide Cosmetic Armor Button",
+  "cos.config.CosArmorCreativeGuiButton_Left": "(Creative) Cosmetic Armor Button Left Position",
+  "cos.config.CosArmorCreativeGuiButton_Top": "(Creative) Cosmetic Armor Button Top Position"
 }

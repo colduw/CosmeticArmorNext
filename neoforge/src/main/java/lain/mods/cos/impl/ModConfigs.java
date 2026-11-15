@@ -31,7 +31,7 @@ public class ModConfigs {
                 CosArmorGuiButton_Left = comment("The horizontal pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorGuiButton_Left")
                         .defineInRange("CosArmorGuiButton_Left", 66, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                CosArmorGuiButton_Top = comment("The vertical pixel distance from the origin point of player inventoy gui")
+                CosArmorGuiButton_Top = comment("The vertical pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorGuiButton_Top")
                         .defineInRange("CosArmorGuiButton_Top", 69, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 CosArmorToggleButton_Hidden = comment("Whether or not to hide the button for toggling the mod temporarily on client side")
@@ -49,7 +49,7 @@ public class ModConfigs {
                 CosArmorCreativeGuiButton_Left = comment("The horizontal pixel distance from the origin point of creative inventory gui")
                         .translation("cos.config.CosArmorCreativeGuiButton_Left")
                         .defineInRange("CosArmorCreativeGuiButton_Left", 96, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                CosArmorCreativeGuiButton_Top = comment("The vertical pixel distance from the origin point of creative inventoy gui")
+                CosArmorCreativeGuiButton_Top = comment("The vertical pixel distance from the origin point of creative inventory gui")
                         .translation("cos.config.CosArmorCreativeGuiButton_Top")
                         .defineInRange("CosArmorCreativeGuiButton_Top", 40, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 pop();
@@ -64,7 +64,7 @@ public class ModConfigs {
                 CosArmorDisableRecipeBook = comment("Whether or not to disable the RecipeBook in the CosmeticArmorInventory")
                         .translation("cos.config.CosArmorDisableRecipeBook")
                         .define("CosArmorDisableRecipeBook", false);
-                CosArmorDisableCosHatCommand = comment("Whether or not to disable the coshat command")
+                CosArmorDisableCosHatCommand = comment("Whether or not to disable the /coshat command")
                         .translation("cos.config.CosArmorDisableCosHatCommand")
                         .define("CosArmorDisableCosHatCommand", false);
                 pop();
