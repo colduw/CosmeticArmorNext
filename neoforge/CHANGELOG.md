@@ -1,4 +1,4 @@
-# [v5] - tbd
+# [v5] - 2026.11.16
 
 - Changed keybind category from inventory to an own category.
 - Update checker notifications now show up in game chat as well.

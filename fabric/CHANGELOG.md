@@ -1,4 +1,4 @@
-# [v5] - tbd
+# [v5] - 2026.11.16
 
 - Fixed "Ignoring click in mismatching container"
 - Fixed CosArmorDisableRecipeBook, will now properly remove the Recipe Book
