@@ -1,8 +1,10 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
+issueTrackerURL="https://github.com/colduw/CosmeticArmorNext/issues"
 [[mods]]
 modId = "${mod_id}"
+displayURL="https://github.com/colduw/CosmeticArmorNext"
 updateJSONURL="${updateURLNeoForge}"
 logoFile = "canvs.png"
 iconFile = "canvs.png"
