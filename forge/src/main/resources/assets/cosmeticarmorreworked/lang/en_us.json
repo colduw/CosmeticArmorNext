@@ -24,5 +24,19 @@
   "cos.config.CosArmorToggleButton_Top": "Cosmetic Armor Toggle Button Top Position",
   "cos.config.CosArmorCreativeGuiButton_Hidden": "(Creative) Hide Cosmetic Armor Button",
   "cos.config.CosArmorCreativeGuiButton_Left": "(Creative) Cosmetic Armor Button Left Position",
-  "cos.config.CosArmorCreativeGuiButton_Top": "(Creative) Cosmetic Armor Button Top Position"
+  "cos.config.CosArmorCreativeGuiButton_Top": "(Creative) Cosmetic Armor Button Top Position",
+  "cos.config.CosArmorKeepThroughDeath.tooltip": "Whether or not to keep items in cosmetic armor slots in the event of player death",
+  "cos.config.CosArmorDisableRecipeBook.tooltip": "Whether or not to disable the Recipe Book in the Cosmetic Armor Inventory",
+  "cos.config.CosArmorDisableCosHatCommand.tooltip": "Whether or not to disable the /coshat command",
+  "cos.config.CosArmorGuiButton_Hidden.tooltip": "Whether or not to hide the button for opening Cosmetic Armor Inventory",
+  "cos.config.CosArmorGuiButton_Left.tooltip": "The horizontal pixel distance from the origin point of player inventory gui",
+  "cos.config.CosArmorGuiButton_Top.tooltip": "The vertical pixel distance from the origin point of player inventory gui",
+  "cos.config.CosArmorToggleButton_Hidden.tooltip": "Whether or not to hide the button for toggling the mod temporarily on client side",
+  "cos.config.CosArmorToggleButton_Left.tooltip": "The horizontal pixel distance from the origin point of player inventory gui",
+  "cos.config.CosArmorToggleButton_Top.tooltip": "The vertical pixel distance from the origin point of player inventory gui",
+  "cos.config.CosArmorCreativeGuiButton_Hidden.tooltip": "Whether or not to hide the button for opening Cosmetic Armor Inventory in Creative Inventory",
+  "cos.config.CosArmorCreativeGuiButton_Left.tooltip": "The horizontal pixel distance from the origin point of creative inventory gui",
+  "cos.config.CosArmorCreativeGuiButton_Top.tooltip": "The vertical pixel distance from the origin point of creative inventory gui",
+  "cosmeticarmorreworked.configuration.Common.tooltip": "These settings affects both server and client",
+  "cosmeticarmorreworked.configuration.Client.tooltip": "These settings only affects client"
 }

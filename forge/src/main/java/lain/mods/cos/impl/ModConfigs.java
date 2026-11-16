@@ -31,7 +31,7 @@ public class ModConfigs {
         context.registerConfig(ModConfig.Type.CLIENT, new ForgeConfigSpec.Builder() {
             {
                 comment("These settings only affects client").push("Client");
-                CosArmorGuiButton_Hidden = comment("Whether or not to hide the button for opening CosmeticArmorInventory")
+                CosArmorGuiButton_Hidden = comment("Whether or not to hide the button for opening Cosmetic Armor Inventory")
                         .translation("cos.config.CosArmorGuiButton_Hidden")
                         .define("CosArmorGuiButton_Hidden", false);
                 CosArmorGuiButton_Left = comment("The horizontal pixel distance from the origin point of player inventory gui")
@@ -49,7 +49,7 @@ public class ModConfigs {
                 CosArmorToggleButton_Top = comment("The vertical pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorToggleButton_Top")
                         .defineInRange("CosArmorToggleButton_Top", 72, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                CosArmorCreativeGuiButton_Hidden = comment("Whether or not to hide the button for opening CosmeticArmorInventory in CreativeInventory")
+                CosArmorCreativeGuiButton_Hidden = comment("Whether or not to hide the button for opening Cosmetic Armor Inventory in Creative Inventory")
                         .translation("cos.config.CosArmorCreativeGuiButton_Hidden")
                         .define("CosArmorCreativeGuiButton_Hidden", false);
                 CosArmorCreativeGuiButton_Left = comment("The horizontal pixel distance from the origin point of creative inventory gui")
@@ -67,7 +67,7 @@ public class ModConfigs {
                 CosArmorKeepThroughDeath = comment("Whether or not to keep items in cosmetic armor slots in the event of player death")
                         .translation("cos.config.CosArmorKeepThroughDeath")
                         .define("CosArmorKeepThroughDeath", false);
-                CosArmorDisableRecipeBook = comment("Whether or not to disable the RecipeBook in the CosmeticArmorInventory")
+                CosArmorDisableRecipeBook = comment("Whether or not to disable the Recipe Book in the Cosmetic Armor Inventory")
                         .translation("cos.config.CosArmorDisableRecipeBook")
                         .define("CosArmorDisableRecipeBook", false);
                 CosArmorDisableCosHatCommand = comment("Whether or not to disable the /coshat command")
@@ -95,11 +95,14 @@ public class ModConfigs {
         protected void init() {
             LinearLayout clientLayout = LinearLayout.vertical();
 
+            int maxWidth = (this.width / 2) - 20;
+
             // CosArmorGuiButton_Hidden
             Checkbox CosArmorGuiButtonHidden = Checkbox.builder(Component.translatable("cos.config.CosArmorGuiButton_Hidden"), this.font)
                     .selected(CosArmorGuiButton_Hidden.get())
                     .onValueChange((btn, value) -> CosArmorGuiButton_Hidden.set(value))
-                    .tooltip(Tooltip.create(Component.literal("Whether or not to hide the button for opening CosmeticArmorInventory")))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorGuiButton_Hidden.tooltip")))
+                    .maxWidth(maxWidth - 40)
                     .build();
             clientLayout.addChild(SpacerElement.height(15));
             clientLayout.addChild(CosArmorGuiButtonHidden);
@@ -107,7 +110,7 @@ public class ModConfigs {
             // CosArmorGuiButton_Left
             EditBox CosArmorGuiButtonLeft = new EditBox(this.font, 100, 20, Component.translatable("cos.config.CosArmorGuiButton_Left"));
             CosArmorGuiButtonLeft.setValue(CosArmorGuiButton_Left.get().toString());
-            CosArmorGuiButtonLeft.setTooltip(Tooltip.create(Component.literal("The horizontal pixel distance from the origin point of player inventory gui")));
+            CosArmorGuiButtonLeft.setTooltip(Tooltip.create(Component.translatable("cos.config.CosArmorGuiButton_Left.tooltip")));
             CosArmorGuiButtonLeft.setResponder(s -> {
                 try {
                     CosArmorGuiButton_Left.set(Integer.parseInt(s));
@@ -116,13 +119,13 @@ public class ModConfigs {
                 }
             });
             clientLayout.addChild(SpacerElement.height(15));
-            clientLayout.addChild(new StringWidget(CosArmorGuiButtonLeft.getMessage(), this.font));
+            clientLayout.addChild(new MultiLineTextWidget(CosArmorGuiButtonLeft.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorGuiButtonLeft);
 
             // CosArmorGuiButton_Top
             EditBox CosArmorGuiButtonTop = new EditBox(this.font, 100, 20, Component.translatable("cos.config.CosArmorGuiButton_Top"));
             CosArmorGuiButtonTop.setValue(CosArmorGuiButton_Top.get().toString());
-            CosArmorGuiButtonTop.setTooltip(Tooltip.create(Component.literal("The vertical pixel distance from the origin point of player inventory gui")));
+            CosArmorGuiButtonTop.setTooltip(Tooltip.create(Component.translatable("cos.config.CosArmorGuiButton_Top.tooltip")));
             CosArmorGuiButtonTop.setResponder(s -> {
                 try {
                     CosArmorGuiButton_Top.set(Integer.parseInt(s));
@@ -131,14 +134,15 @@ public class ModConfigs {
                 }
             });
             clientLayout.addChild(SpacerElement.height(15));
-            clientLayout.addChild(new StringWidget(CosArmorGuiButtonTop.getMessage(), this.font));
+            clientLayout.addChild(new MultiLineTextWidget(CosArmorGuiButtonTop.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorGuiButtonTop);
 
             // CosArmorToggleButton_Hidden
             Checkbox CosArmorToggleButtonHidden = Checkbox.builder(Component.translatable("cos.config.CosArmorToggleButton_Hidden"), this.font)
                     .selected(CosArmorToggleButton_Hidden.get())
                     .onValueChange((btn, value) -> CosArmorToggleButton_Hidden.set(value))
-                    .tooltip(Tooltip.create(Component.literal("Whether or not to hide the button for toggling the mod temporarily on client side")))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorToggleButton_Hidden.tooltip")))
+                    .maxWidth(maxWidth - 40)
                     .build();
             clientLayout.addChild(SpacerElement.height(15));
             clientLayout.addChild(CosArmorToggleButtonHidden);
@@ -146,7 +150,7 @@ public class ModConfigs {
             // CosArmorToggleButton_Left
             EditBox CosArmorToggleButtonLeft = new EditBox(this.font, 100, 20, Component.translatable("cos.config.CosArmorToggleButton_Left"));
             CosArmorToggleButtonLeft.setValue(CosArmorToggleButton_Left.get().toString());
-            CosArmorToggleButtonLeft.setTooltip(Tooltip.create(Component.literal("The horizontal pixel distance from the origin point of player inventory gui")));
+            CosArmorToggleButtonLeft.setTooltip(Tooltip.create(Component.translatable("cos.config.CosArmorToggleButton_Left.tooltip")));
             CosArmorToggleButtonLeft.setResponder(s -> {
                 try {
                     CosArmorToggleButton_Left.set(Integer.parseInt(s));
@@ -155,13 +159,13 @@ public class ModConfigs {
                 }
             });
             clientLayout.addChild(SpacerElement.height(15));
-            clientLayout.addChild(new StringWidget(CosArmorToggleButtonLeft.getMessage(), this.font));
+            clientLayout.addChild(new MultiLineTextWidget(CosArmorToggleButtonLeft.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorToggleButtonLeft);
 
             // CosArmorToggleButton_Top
             EditBox CosArmorToggleButtonTop = new EditBox(this.font, 100, 20, Component.translatable("cos.config.CosArmorToggleButton_Top"));
             CosArmorToggleButtonTop.setValue(CosArmorToggleButton_Top.get().toString());
-            CosArmorToggleButtonTop.setTooltip(Tooltip.create(Component.literal("The vertical pixel distance from the origin point of player inventory gui")));
+            CosArmorToggleButtonTop.setTooltip(Tooltip.create(Component.translatable("cos.config.CosArmorToggleButton_Top.tooltip")));
             CosArmorToggleButtonTop.setResponder(s -> {
                 try {
                     CosArmorToggleButton_Top.set(Integer.parseInt(s));
@@ -170,14 +174,15 @@ public class ModConfigs {
                 }
             });
             clientLayout.addChild(SpacerElement.height(15));
-            clientLayout.addChild(new StringWidget(CosArmorToggleButtonTop.getMessage(), this.font));
+            clientLayout.addChild(new MultiLineTextWidget(CosArmorToggleButtonTop.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorToggleButtonTop);
 
             // CosArmorCreativeGuiButton_Hidden
             Checkbox CosArmorCreativeGuiButtonHidden = Checkbox.builder(Component.translatable("cos.config.CosArmorCreativeGuiButton_Hidden"), this.font)
                     .selected(CosArmorCreativeGuiButton_Hidden.get())
                     .onValueChange((btn, value) -> CosArmorCreativeGuiButton_Hidden.set(value))
-                    .tooltip(Tooltip.create(Component.literal("Whether or not to hide the button for opening CosmeticArmorInventory in CreativeInventory")))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorCreativeGuiButton_Hidden.tooltip")))
+                    .maxWidth(maxWidth - 40)
                     .build();
             clientLayout.addChild(SpacerElement.height(15));
             clientLayout.addChild(CosArmorCreativeGuiButtonHidden);
@@ -185,7 +190,7 @@ public class ModConfigs {
             // CosArmorCreativeGuiButton_Left
             EditBox CosArmorCreativeGuiButtonLeft = new EditBox(this.font, 100, 20, Component.translatable("cos.config.CosArmorCreativeGuiButton_Left"));
             CosArmorCreativeGuiButtonLeft.setValue(CosArmorCreativeGuiButton_Left.get().toString());
-            CosArmorCreativeGuiButtonLeft.setTooltip(Tooltip.create(Component.literal("The horizontal pixel distance from the origin point of creative inventory gui")));
+            CosArmorCreativeGuiButtonLeft.setTooltip(Tooltip.create(Component.translatable("cos.config.CosArmorCreativeGuiButton_Left.tooltip")));
             CosArmorCreativeGuiButtonLeft.setResponder(s -> {
                 try {
                     CosArmorCreativeGuiButton_Left.set(Integer.parseInt(s));
@@ -194,13 +199,13 @@ public class ModConfigs {
                 }
             });
             clientLayout.addChild(SpacerElement.height(15));
-            clientLayout.addChild(new StringWidget(CosArmorCreativeGuiButtonLeft.getMessage(), this.font));
+            clientLayout.addChild(new MultiLineTextWidget(CosArmorCreativeGuiButtonLeft.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorCreativeGuiButtonLeft);
 
             // CosArmorCreativeGuiButton_Top
             EditBox CosArmorCreativeGuiButtonTop = new EditBox(this.font, 100, 20, Component.translatable("cos.config.CosArmorCreativeGuiButton_Top"));
             CosArmorCreativeGuiButtonTop.setValue(CosArmorCreativeGuiButton_Top.get().toString());
-            CosArmorCreativeGuiButtonTop.setTooltip(Tooltip.create(Component.literal("The vertical pixel distance from the origin point of creative inventory gui")));
+            CosArmorCreativeGuiButtonTop.setTooltip(Tooltip.create(Component.translatable("cos.config.CosArmorCreativeGuiButton_Top.tooltip")));
             CosArmorCreativeGuiButtonTop.setResponder(s -> {
                 try {
                     CosArmorCreativeGuiButton_Top.set(Integer.parseInt(s));
@@ -209,7 +214,7 @@ public class ModConfigs {
                 }
             });
             clientLayout.addChild(SpacerElement.height(15));
-            clientLayout.addChild(new StringWidget(CosArmorCreativeGuiButtonTop.getMessage(), this.font));
+            clientLayout.addChild(new MultiLineTextWidget(CosArmorCreativeGuiButtonTop.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorCreativeGuiButtonTop);
 
             /// COMMON
@@ -219,7 +224,8 @@ public class ModConfigs {
             Checkbox CosArmorKeepThroughDeathButton = Checkbox.builder(Component.translatable("cos.config.CosArmorKeepThroughDeath"), this.font)
                     .selected(CosArmorKeepThroughDeath.get())
                     .onValueChange((btn, value) -> CosArmorKeepThroughDeath.set(value))
-                    .tooltip(Tooltip.create(Component.literal("Whether or not to keep items in cosmetic armor slots in the event of player death")))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorKeepThroughDeath.tooltip")))
+                    .maxWidth(maxWidth - 40)
                     .build();
             commonLayout.addChild(SpacerElement.height(15));
             commonLayout.addChild(CosArmorKeepThroughDeathButton);
@@ -228,7 +234,8 @@ public class ModConfigs {
             Checkbox CosArmorDisableRecipeBookButton = Checkbox.builder(Component.translatable("cos.config.CosArmorDisableRecipeBook"), this.font)
                     .selected(CosArmorDisableRecipeBook.get())
                     .onValueChange((btn, value) -> CosArmorDisableRecipeBook.set(value))
-                    .tooltip(Tooltip.create(Component.literal("Whether or not to disable the RecipeBook in the CosmeticArmorInventory")))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorDisableRecipeBook.tooltip")))
+                    .maxWidth(maxWidth - 40)
                     .build();
             commonLayout.addChild(SpacerElement.height(15));
             commonLayout.addChild(CosArmorDisableRecipeBookButton);
@@ -237,14 +244,14 @@ public class ModConfigs {
             Checkbox CosArmorDisableCosHatCommandButton = Checkbox.builder(Component.translatable("cos.config.CosArmorDisableCosHatCommand"), this.font)
                     .selected(CosArmorDisableCosHatCommand.get())
                     .onValueChange((btn, value) -> CosArmorDisableCosHatCommand.set(value))
-                    .tooltip(Tooltip.create(Component.literal("Whether or not to disable the /coshat command")))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorDisableCosHatCommand.tooltip")))
+                    .maxWidth(maxWidth - 40)
                     .build();
             commonLayout.addChild(SpacerElement.height(15));
             commonLayout.addChild(CosArmorDisableCosHatCommandButton);
 
             /// CLIENT
             ScrollableLayout clientScroll = new ScrollableLayout(this.minecraft, clientLayout, 100);
-            clientScroll.setMinWidth((this.width / 2) - 100);
             clientScroll.setMaxHeight(this.height - 50);
             clientScroll.setPosition(20, 20);
             clientScroll.arrangeElements();
