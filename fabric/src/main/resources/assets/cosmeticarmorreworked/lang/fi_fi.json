@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Avaa kosmeettisten haarniskojen inventaario",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Kosmeettinen haarniska",
   "cos.gui.buttonnormal": "Normaali",
   "cos.command.clearcosarmor.success.single": "Poistettu %s esinettä pelaajan %s kosmeettisten haarniskojen inventaariosta",

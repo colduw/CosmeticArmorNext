@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Åbn lager af kosmetiske rustninger",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Kosmetisk rustning",
   "cos.gui.buttonnormal": "Normal",
   "cos.command.clearcosarmor.success.single": "Fjernede %s genstande i kosmetisk rustningsinventar fra spiller %s",

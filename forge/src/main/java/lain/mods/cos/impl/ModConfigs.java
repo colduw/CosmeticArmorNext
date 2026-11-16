@@ -87,7 +87,7 @@ public class ModConfigs {
     public static class ConfigMenu extends Screen {
         public Screen parent;
         public ConfigMenu(Screen parent) {
-            super(Component.translatable("cos.key.category"));
+            super(Component.translatable("key.category.cosmeticarmorreworked.cos.key.category"));
             this.parent = parent;
         }
 

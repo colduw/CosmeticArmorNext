@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Otevřít inventář kosmetického brnění",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Kosmetické brnění",
   "cos.gui.buttonnormal": "Normální",
   "cos.command.clearcosarmor.success.single": "Odebrány %s předměty z inventáře kosmetické zbroje pro hráče %s",

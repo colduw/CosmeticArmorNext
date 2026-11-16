@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Kozmetikai páncélkészlet megnyitása",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Kozmetikai páncél",
   "cos.gui.buttonnormal": "Normál",
   "cos.command.clearcosarmor.success.single": "%s tárgy eltávolítva a(z) %s játékos kozmetikai páncélkészletéből.",

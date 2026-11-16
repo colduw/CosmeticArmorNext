@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Open de inventaris van cosmetische pantsers",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Cosmetische pantser",
   "cos.gui.buttonnormal": "Normaal",
   "cos.command.clearcosarmor.success.single": "Verwijderde %s items uit de cosmetische pantserinventaris van speler %s",

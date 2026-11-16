@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "コスメティックアーマーのインベントリを開く",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "化粧用アーマー",
   "cos.gui.buttonnormal": "普通",
   "cos.command.clearcosarmor.success.single": "プレイヤー%sのコスメティックアーマーインベントリから%s個のアイテムを削除しました",

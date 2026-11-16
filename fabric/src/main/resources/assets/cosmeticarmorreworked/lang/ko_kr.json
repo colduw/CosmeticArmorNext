@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "꾸미기용 갑옷 인벤토리 열기",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "코스메틱 아머",
   "cos.gui.buttonnormal": "정상",
   "cos.command.clearcosarmor.success.single": "플레이어 %s의 외형 장비 인벤토리에서 %s개의 아이템을 제거했습니다.",

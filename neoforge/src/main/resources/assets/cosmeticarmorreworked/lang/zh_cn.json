@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "打开外观装备库存",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "外观护甲",
   "cos.gui.buttonnormal": "普通的",
   "cos.command.clearcosarmor.success.single": "从玩家 %s 的外观装备栏中移除 %s 件物品",

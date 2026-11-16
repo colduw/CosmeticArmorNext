@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Inventarul deschis de armură cosmetică",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Armură cosmetică",
   "cos.gui.buttonnormal": "Normal",
   "cos.command.clearcosarmor.success.single": "Am eliminat %s obiecte din inventarul de armură cosmetică al jucătorului %s",

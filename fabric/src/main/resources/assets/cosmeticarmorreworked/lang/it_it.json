@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Apri l'inventario delle armature cosmetiche",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Armatura cosmetica",
   "cos.gui.buttonnormal": "Normale",
   "cos.command.clearcosarmor.success.single": "Rimossi %s oggetti dall'inventario dell'armatura cosmetica del giocatore %s",

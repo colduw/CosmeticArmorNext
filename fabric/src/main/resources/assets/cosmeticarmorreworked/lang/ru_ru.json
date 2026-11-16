@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Открыть инвентарь косметической брони",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Косметическая броня",
   "cos.gui.buttonnormal": "Нормальный",
   "cos.command.clearcosarmor.success.single": "Удалены предметы %s из инвентаря косметической брони игрока %s.",

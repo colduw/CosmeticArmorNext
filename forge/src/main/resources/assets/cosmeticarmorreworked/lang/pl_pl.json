@@ -1,6 +1,6 @@
 {
   "cos.key.opencosarmorinventory": "Otwórz ekwipunek zbroi kosmetycznej",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.gui.buttoncos": "Zbroja kosmetyczna",
   "cos.gui.buttonnormal": "Normalna",
   "cos.command.clearcosarmor.success.single": "Usunięto %s przedmiotów z ekwipunku zbroi kosmetycznej gracza %s",
