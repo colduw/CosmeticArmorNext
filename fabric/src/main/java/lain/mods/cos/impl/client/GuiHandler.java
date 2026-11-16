@@ -64,6 +64,7 @@ public enum GuiHandler {
                         button -> {
                             if (screen instanceof GuiCosArmorInventory) {
                                 InventoryScreen newGui = new InventoryScreen(Minecraft.getInstance().player);
+                                Minecraft.getInstance().player.containerMenu = Minecraft.getInstance().player.inventoryMenu;
                                 InventoryScreenAccess.setXMouse(newGui, ((GuiCosArmorInventory) screen).oldMouseX);
                                 InventoryScreenAccess.setYMouse(newGui, ((GuiCosArmorInventory) screen).oldMouseY);
                                 Minecraft.getInstance().gui.setScreen(newGui);

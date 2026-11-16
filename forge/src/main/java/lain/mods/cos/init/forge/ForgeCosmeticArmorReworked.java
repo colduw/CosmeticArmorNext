@@ -85,6 +85,7 @@ public class ForgeCosmeticArmorReworked {
         if (FMLEnvironment.dist.isClient()) {
             ClientPlayerNetworkEvent.LoggingIn.BUS.addListener(this::checkClientUpdate);
             RegisterKeyMappingsEvent.BUS.addListener(this::setupKeyMappings);
+            ModConfigs.registerConfigScreen(context);
         }
         
         ModConfigs.registerConfigs(context);

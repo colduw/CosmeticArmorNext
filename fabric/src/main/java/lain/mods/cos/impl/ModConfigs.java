@@ -26,13 +26,13 @@ public class ModConfigs {
         ConfigRegistry.INSTANCE.register(ModConstants.MODID, ModConfig.Type.CLIENT, new ModConfigSpec.Builder() {
             {
                 comment("These settings only affects client").push("Client");
-                CosArmorGuiButton_Hidden = comment("Whether or not to hide the button for opening CosmeticArmorInventory")
+                CosArmorGuiButton_Hidden = comment("Whether or not to hide the button for opening Cosmetic Armor Inventory")
                         .translation("cos.config.CosArmorGuiButton_Hidden")
                         .define("CosArmorGuiButton_Hidden", false);
                 CosArmorGuiButton_Left = comment("The horizontal pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorGuiButton_Left")
                         .defineInRange("CosArmorGuiButton_Left", 66, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                CosArmorGuiButton_Top = comment("The vertical pixel distance from the origin point of player inventoy gui")
+                CosArmorGuiButton_Top = comment("The vertical pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorGuiButton_Top")
                         .defineInRange("CosArmorGuiButton_Top", 69, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 CosArmorToggleButton_Hidden = comment("Whether or not to hide the button for toggling the mod temporarily on client side")
@@ -44,13 +44,13 @@ public class ModConfigs {
                 CosArmorToggleButton_Top = comment("The vertical pixel distance from the origin point of player inventory gui")
                         .translation("cos.config.CosArmorToggleButton_Top")
                         .defineInRange("CosArmorToggleButton_Top", 72, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                CosArmorCreativeGuiButton_Hidden = comment("Whether or not to hide the button for opening CosmeticArmorInventory in CreativeInventory")
+                CosArmorCreativeGuiButton_Hidden = comment("Whether or not to hide the button for opening Cosmetic Armor Inventory in Creative Inventory")
                         .translation("cos.config.CosArmorCreativeGuiButton_Hidden")
                         .define("CosArmorCreativeGuiButton_Hidden", false);
                 CosArmorCreativeGuiButton_Left = comment("The horizontal pixel distance from the origin point of creative inventory gui")
                         .translation("cos.config.CosArmorCreativeGuiButton_Left")
                         .defineInRange("CosArmorCreativeGuiButton_Left", 96, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                CosArmorCreativeGuiButton_Top = comment("The vertical pixel distance from the origin point of creative inventoy gui")
+                CosArmorCreativeGuiButton_Top = comment("The vertical pixel distance from the origin point of creative inventory gui")
                         .translation("cos.config.CosArmorCreativeGuiButton_Top")
                         .defineInRange("CosArmorCreativeGuiButton_Top", 40, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 pop();
@@ -62,10 +62,10 @@ public class ModConfigs {
                 CosArmorKeepThroughDeath = comment("Whether or not to keep items in cosmetic armor slots in the event of player death")
                         .translation("cos.config.CosArmorKeepThroughDeath")
                         .define("CosArmorKeepThroughDeath", false);
-                CosArmorDisableRecipeBook = comment("Whether or not to disable the RecipeBook in the CosmeticArmorInventory")
+                CosArmorDisableRecipeBook = comment("Whether or not to disable the Recipe Book in the Cosmetic Armor Inventory")
                         .translation("cos.config.CosArmorDisableRecipeBook")
                         .define("CosArmorDisableRecipeBook", false);
-                CosArmorDisableCosHatCommand = comment("Whether or not to disable the coshat command")
+                CosArmorDisableCosHatCommand = comment("Whether or not to disable the /coshat command")
                         .translation("cos.config.CosArmorDisableCosHatCommand")
                         .define("CosArmorDisableCosHatCommand", false);
                 pop();
