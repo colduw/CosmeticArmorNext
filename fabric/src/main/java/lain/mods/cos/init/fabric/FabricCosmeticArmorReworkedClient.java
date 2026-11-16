@@ -1,5 +1,6 @@
 package lain.mods.cos.init.fabric;
 
+import fuzs.forgeconfigapiport.fabric.api.v5.client.ConfigScreenFactoryRegistry;
 import lain.mods.cos.impl.ModObjects;
 import lain.mods.cos.impl.client.GuiHandler;
 import lain.mods.cos.impl.client.KeyHandler;
@@ -17,6 +18,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 
 import java.net.URI;
 
@@ -82,5 +84,6 @@ public class FabricCosmeticArmorReworkedClient implements ClientModInitializer {
         KeyHandler.INSTANCE.registerKeyMappings(KeyMappingHelper::registerKeyMapping);
         GuiHandler.INSTANCE.registerMenuScreens();
         ModPayloads.setupClient();
+        ConfigScreenFactoryRegistry.INSTANCE.register(ModConstants.MODID, ConfigurationScreen::new);
     }
 }

@@ -29,6 +29,8 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -90,7 +92,7 @@ public class NeoForgeCosmeticArmorReworked {
         }
     }
 
-    public NeoForgeCosmeticArmorReworked(IEventBus bus) {
+    public NeoForgeCosmeticArmorReworked(IEventBus bus, ModContainer container) {
         MENU.register(bus);
         COMPONENTS.register(bus);
         bus.addListener(this::setup);
@@ -99,6 +101,7 @@ public class NeoForgeCosmeticArmorReworked {
             NeoForge.EVENT_BUS.addListener(this::checkClientUpdate);
             bus.addListener(this::setupKeyMappings);
             bus.addListener(this::setupMenuScreens);
+            container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         }
         bus.addListener(this::setupPayloadHandlers);
         ModConfigs.registerConfigs();
