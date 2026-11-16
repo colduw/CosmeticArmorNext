@@ -8,6 +8,8 @@ import lain.mods.cos.impl.network.packet.PacketSetSkinArmor;
 import lain.mods.cos.init.ModConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
@@ -33,12 +35,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
     private boolean buttonClicked;
 
     public GuiCosArmorInventory(ContainerCosArmor container, Inventory invPlayer, Component displayName) {
-        super(container, new CraftingRecipeBookComponent(container) {
-            @Override
-            public boolean isVisible() {
-                return !ModConfigs.CosArmorDisableRecipeBook.get() && super.isVisible();
-            }
-        }, invPlayer, Component.translatable("container.crafting"));
+        super(container, new CraftingRecipeBookComponent(container), invPlayer, Component.translatable("container.crafting"));
         titleLabelX = 97;
         effects = new EffectsInInventory(this);
         smoothTransition();
@@ -47,6 +44,16 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
     @Override
     protected void init() {
         super.init();
+
+        if (ModConfigs.CosArmorDisableRecipeBook.get()) {
+            for (GuiEventListener i : children()) {
+                if (i instanceof ImageButton) {
+                    removeWidget(i);
+                    break;
+                }
+            }
+        }
+
         InventoryCosArmor invCosArmor = ModObjects.invMan.getCosArmorInventoryClient(minecraft.player.getUUID());
         for (int i = 0; i < 4; i++) {
             int j = 3 - i;
