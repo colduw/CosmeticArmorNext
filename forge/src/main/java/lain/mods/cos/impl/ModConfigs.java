@@ -1,6 +1,6 @@
 package lain.mods.cos.impl;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.layouts.SpacerElement;
@@ -252,17 +252,17 @@ public class ModConfigs {
 
             /// CLIENT
             ScrollableLayout clientScroll = new ScrollableLayout(this.minecraft, clientLayout, 100);
+            clientScroll.arrangeElements();
             clientScroll.setMaxHeight(this.height - 50);
             clientScroll.setPosition(20, 20);
-            clientScroll.arrangeElements();
             clientScroll.visitWidgets(this::addRenderableWidget);
 
             /// COMMON
             ScrollableLayout commonScroll = new ScrollableLayout(this.minecraft, commonLayout, 100);
+            commonScroll.arrangeElements();
             commonScroll.setMinWidth((this.width / 2) - 100);
             commonScroll.setMaxHeight(this.height - 50);
             commonScroll.setPosition((this.width / 2) + 20, 20);
-            commonScroll.arrangeElements();
             commonScroll.visitWidgets(this::addRenderableWidget);
 
             Button backButton = Button.builder(Component.translatable("gui.back"), button -> onClose())
@@ -273,11 +273,11 @@ public class ModConfigs {
         }
 
         @Override
-        public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            super.render(graphics, mouseX, mouseY, partialTicks);
+        public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+            super.extractRenderState(graphics, mouseX, mouseY, partialTicks);
 
-            graphics.drawString(this.font, Component.translatable("cosmeticarmorreworked.configuration.Client"), 80, 30 - this.font.lineHeight - 10, 0xFFFFFFFF, true);
-            graphics.drawString(this.font, Component.translatable("cosmeticarmorreworked.configuration.Common"), (this.width / 2) + 35, 30 - this.font.lineHeight - 10, 0xFFFFFFFF, true);
+            graphics.text(this.font, Component.translatable("cosmeticarmorreworked.configuration.Client"), 80, 30 - this.font.lineHeight - 10, 0xFFFFFFFF, true);
+            graphics.text(this.font, Component.translatable("cosmeticarmorreworked.configuration.Common"), (this.width / 2) + 35, 30 - this.font.lineHeight - 10, 0xFFFFFFFF, true);
         }
 
         @Override

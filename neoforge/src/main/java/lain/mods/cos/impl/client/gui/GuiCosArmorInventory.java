@@ -7,7 +7,7 @@ import lain.mods.cos.impl.inventory.InventoryCosArmor;
 import lain.mods.cos.impl.network.payload.PayloadSetSkinArmor;
 import lain.mods.cos.init.ModConstants;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.navigation.ScreenPosition;
