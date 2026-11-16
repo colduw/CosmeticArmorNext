@@ -284,7 +284,7 @@ public class ModConfigs {
         public void onClose() {
             CosArmorGuiButton_Hidden.save();
             CosArmorKeepThroughDeath.save();
-            this.minecraft.setScreen(this.parent);
+            this.minecraft.gui.setScreen(this.parent);
         }
     }
 }
