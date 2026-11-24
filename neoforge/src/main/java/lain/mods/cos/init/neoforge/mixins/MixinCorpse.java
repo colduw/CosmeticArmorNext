@@ -2,6 +2,7 @@ package lain.mods.cos.init.neoforge.mixins;
 
 import de.maxhenkel.corpse.gui.CorpseAdditionalContainer;
 import de.maxhenkel.corpse.gui.CorpseInventoryContainer;
+import lain.mods.cos.impl.ModConfigs;
 import lain.mods.cos.impl.ModObjects;
 import lain.mods.cos.impl.inventory.InventoryCosArmor;
 import lain.mods.cos.init.neoforge.NeoForgeCosmeticArmorReworked;
@@ -17,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinCorpse {
     @Inject(method = "transferItems", at = @At("HEAD"))
     private void CosArmor_transferItems(CallbackInfo ci) {
+        if (ModConfigs.CosArmorDisableGraveStoneCorpseCompat.get()) {
+            return;
+        }
+
         if ((Object) this instanceof CorpseInventoryContainer container) {
             if (!container.isEditable()) {
                 return;

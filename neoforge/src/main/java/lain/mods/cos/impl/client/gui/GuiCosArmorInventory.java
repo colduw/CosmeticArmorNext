@@ -19,14 +19,21 @@ import net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosArmor> {
     public static final ResourceLocation INVENTORY = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
     public static final ResourceLocation SLOT = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
+
     public static final ResourceLocation COSARMOR_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
+    public static final ResourceLocation COSARMOR_BUTTON_BLANK = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button_blank.png");
+    public static final ResourceLocation COSARMOR_BUTTON_MASK = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button_blank_mask.png");
+    
     public static final ResourceLocation COSARMOR_TOGGLE_BUTTON = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
+    public static final ResourceLocation COSARMOR_TOGGLE_BUTTON_BLANK = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button_blank.png");
+    public static final ResourceLocation COSARMOR_TOGGLE_BUTTON_MASK = ResourceLocation.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button_blank_mask.png");
 
     private final EffectsInInventory effects;
     public float oldMouseX;
@@ -78,7 +85,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, titleLabelX, titleLabelY, 0xff404040, false);
+        graphics.drawString(font, title, titleLabelX, titleLabelY, ARGB.opaque(ModConfigs.CosArmorCraftingTextColor.get()), false);
     }
 
     @Override
