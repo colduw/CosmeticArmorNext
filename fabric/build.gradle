@@ -15,7 +15,10 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    srcDir '../common/src/main/resources'
+}
 
 repositories {
     maven {
@@ -26,6 +29,16 @@ repositories {
     }
 
     maven { url = 'https://maven.parchmentmc.org/'}
+
+    exclusiveContent {
+        forRepository {
+            maven { url = "https://api.modrinth.com/maven"}
+        }
+
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 loom {
@@ -38,20 +51,23 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
     implementation "curse.maven:forge-config-api-port-547434:${fabric_forge_config_version}"
+    implementation "maven.modrinth:yn9u3ypm:${universal_graves_version}"
 }
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            fabric_loader_version  : fabric_loader_version,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description,
-            updateURLFabric        : updateURLFabric
+            minecraft_version       : minecraft_version,
+            minecraft_version_range : minecraft_version_range,
+            fabric_loader_version   : fabric_loader_version,
+            mod_id                  : mod_id,
+            mod_name                : mod_name,
+            mod_license             : mod_license,
+            mod_version             : mod_version,
+            mod_authors             : mod_authors,
+            mod_description         : mod_description,
+            updateURLFabric         : updateURLFabric,
+            issueTrackerURL         : issueTrackerURL,
+            displayURL              : displayURL
     ]
     inputs.properties replaceProperties
 
