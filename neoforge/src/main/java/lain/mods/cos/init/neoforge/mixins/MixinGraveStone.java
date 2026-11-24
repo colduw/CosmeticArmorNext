@@ -2,6 +2,7 @@ package lain.mods.cos.init.neoforge.mixins;
 
 import de.maxhenkel.gravestone.blocks.GraveStoneBlock;
 import de.maxhenkel.gravestone.corelib.death.Death;
+import lain.mods.cos.impl.ModConfigs;
 import lain.mods.cos.impl.ModObjects;
 import lain.mods.cos.impl.inventory.InventoryCosArmor;
 import lain.mods.cos.init.neoforge.NeoForgeCosmeticArmorReworked;
@@ -17,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinGraveStone {
     @Inject(method = "fillPlayerInventory", at = @At("HEAD"))
     private void CosArmor_onFillPlayerInventory(Player player, Death death, CallbackInfoReturnable<NonNullList<ItemStack>> ci) {
+        if (ModConfigs.CosArmorDisableGraveStoneCorpseCompat.get()) {
+            return;
+        }
+
         InventoryCosArmor cosArmor = ModObjects.invMan.getCosArmorInventory(player.getUUID());
 
         for (ItemStack itemStack : death.getAdditionalItems()) {

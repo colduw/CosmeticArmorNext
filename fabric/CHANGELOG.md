@@ -1,9 +1,14 @@
-# [v5] - 2026.11.16
+# [v6] - 2026.11.24
 
-- Fixed "Ignoring click in mismatching container"
-- Fixed CosArmorDisableRecipeBook, will now properly remove the Recipe Book
-- Fixed some typos in config comments (inventoy -> inventory)
-- Added config screen (accessible via [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu))
-- Added missing localization keys to all new/existing languages
-- Added new localizations (dk, fi, hu, it, nl, no, pl, ro, se)
-  - If there are any issues with them (there is a 99% guarantee that some are off, as google translate is not 100% accurate), if there is an issue, a [PR](https://github.com/colduw/CosmeticArmorNext/pulls) or [Issue](https://github.com/colduw/CosmeticArmorNext/issues) can be opened
+- Added compatibility to [Universal Graves](https://modrinth.com/mod/universal-graves)
+    - Can be disabled via Mod Menu, or by setting `CosArmorDisableUniversalGravesCompat` to `true`
+- Added option to customize the Cosmetic Armor Button
+    - The color can be set to a flat one, or two colors can be set for a gradient color
+- Added option to customize the Toggle Button
+    - The color can be set to a flat one, or two colors can be set for a gradient color
+- Added option to customize the "Cosmetic Armor" Text
+- Added option to customize the "Crafting" Text
+- Overhauled configuration menu, now shows the default value, and valid ranges
+
+All of the aforementioned colors can be customized ranging from `0x000000` (black) to `0xFFFFFF` (white).
+All colors will be in decimal format, however, you can input hexadecimal. By default it uses prior version settings
