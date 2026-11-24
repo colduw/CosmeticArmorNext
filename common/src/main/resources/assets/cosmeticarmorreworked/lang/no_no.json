@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Vanlige (server- og klient-) alternativer",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Disse innstillingene påvirker både server og klient",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Stil for graderte knapper",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Angi gradientfargene for knappene for kosmetisk rustning"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Angi gradientfargene for knappene for kosmetisk rustning",
+  "cos.config.CosArmorDisableUpdateChecks": "Deaktiver oppdateringssjekkmeldinger",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Om oppdateringssjekkmeldingene skal deaktiveres når en verden blir med"
 }
