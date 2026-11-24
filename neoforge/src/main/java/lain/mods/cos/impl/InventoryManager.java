@@ -164,7 +164,7 @@ public class InventoryManager {
                     if (stack.isEmpty())
                         continue;
 
-                    if (ModList.get().isLoaded("corpse") || ModList.get().isLoaded("gravestone")) {
+                    if ((ModList.get().isLoaded("corpse") || ModList.get().isLoaded("gravestone")) && !ModConfigs.CosArmorDisableGraveStoneCorpseCompat.get()) {
                         stack.set(NeoForgeCosmeticArmorReworked.SLOT_PLACEBACK.get(), i);
                     }
 

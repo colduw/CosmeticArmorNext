@@ -21,13 +21,20 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.player.Inventory;
 
 public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosArmor> {
     public static final Identifier INVENTORY = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/container/inventory.png");
     public static final Identifier SLOT = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/sprites/container/slot.png");
+
     public static final Identifier COSARMOR_BUTTON = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button.png");
+    public static final Identifier COSARMOR_BUTTON_BLANK = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button_blank.png");
+    public static final Identifier COSARMOR_BUTTON_MASK = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_button_blank_mask.png");
+
     public static final Identifier COSARMOR_TOGGLE_BUTTON = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button.png");
+    public static final Identifier COSARMOR_TOGGLE_BUTTON_BLANK = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button_blank.png");
+    public static final Identifier COSARMOR_TOGGLE_BUTTON_MASK = Identifier.fromNamespaceAndPath(ModConstants.MODID, "textures/gui/cosarmor_toggle_button_blank_mask.png");
 
     private final EffectsInInventory effects;
     public float oldMouseX;
@@ -79,7 +86,7 @@ public class GuiCosArmorInventory extends AbstractRecipeBookScreen<ContainerCosA
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, titleLabelX, titleLabelY, 0xff404040, false);
+        graphics.drawString(font, title, titleLabelX, titleLabelY, ARGB.opaque(ModConfigs.CosArmorCraftingTextColor.get()), false);
     }
 
     @Override
