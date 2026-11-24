@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Общие параметры (сервера и клиента)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Эти настройки влияют как на сервер, так и на клиент.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Градиентное оформление кнопок",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Задайте градиентные цвета для кнопок косметической брони."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Задайте градиентные цвета для кнопок косметической брони.",
+  "cos.config.CosArmorDisableUpdateChecks": "Отключить сообщения о проверке обновлений",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Отключать ли сообщения о проверке обновлений при каждом подключении к миру"
 }

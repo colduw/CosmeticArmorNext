@@ -51,6 +51,10 @@ public class NeoForgeCosmeticArmorReworked {
                     .build());
 
     protected void checkClientUpdate(ClientPlayerNetworkEvent.LoggingIn event) {
+        if (ModConfigs.CosArmorDisableUpdateChecks.get()) {
+            return;
+        }
+
         var tempContainer = ModList.get().getModContainerById(ModConstants.MODID);
         if (tempContainer.isEmpty()) {
             return;

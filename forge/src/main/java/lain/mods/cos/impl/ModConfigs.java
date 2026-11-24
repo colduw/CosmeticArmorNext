@@ -52,6 +52,7 @@ public class ModConfigs {
     public static BooleanValue CosArmorKeepThroughDeath;
     public static BooleanValue CosArmorDisableRecipeBook;
     public static BooleanValue CosArmorDisableCosHatCommand;
+    public static BooleanValue CosArmorDisableUpdateChecks;
 
     public static void registerConfigs(FMLJavaModLoadingContext context) {
         context.registerConfig(ModConfig.Type.CLIENT, new ForgeConfigSpec.Builder() {
@@ -90,6 +91,9 @@ public class ModConfigs {
                 CosArmorCraftingTextColor = comment("Color of the drawn Crafting Text")
                         .translation("cos.config.CosArmorCraftingTextColor")
                         .defineInRange("CosArmorCraftingTextColor", 0x404040, 0, 0xFFFFFF);
+                CosArmorDisableUpdateChecks = comment("Whether or not to disable the update check messages whenever a world is joined")
+                        .translation("cos.config.CosArmorDisableUpdateChecks")
+                        .define("CosArmorDisableUpdateChecks", false);
 
                     comment("Button Styling").push("ButtonStyling");
                     CosArmorToggleStyle = comment("Style of the Toggle Buttons")
@@ -325,6 +329,16 @@ public class ModConfigs {
             clientLayout.addChild(SpacerElement.height(15));
             clientLayout.addChild(new MultiLineTextWidget(CosArmorCraftingTextColorButton.getMessage(), this.font).setMaxWidth(maxWidth));
             clientLayout.addChild(CosArmorCraftingTextColorButton);
+
+            // CosArmorDisableUpdateChecks
+            Checkbox CosArmorDisableUpdateChecksBox = Checkbox.builder(Component.translatable("cos.config.CosArmorDisableUpdateChecks"), this.font)
+                    .selected(CosArmorDisableUpdateChecks.get())
+                    .onValueChange((btn, value) -> CosArmorDisableUpdateChecks.set(value))
+                    .tooltip(Tooltip.create(Component.translatable("cos.config.CosArmorDisableUpdateChecks.tooltip")))
+                    .maxWidth(maxWidth - 40)
+                    .build();
+            clientLayout.addChild(SpacerElement.height(15));
+            clientLayout.addChild(CosArmorDisableUpdateChecksBox);
 
             // ButtonStyling
             Button goToButtonStylingMenu = Button.builder(Component.translatable("cosmeticarmorreworked.configuration.ButtonStyling"), button -> this.minecraft.gui.setScreen(new ButtonStylingMenu(this)))

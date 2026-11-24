@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Opções comuns (servidor e cliente)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Essas configurações afetam tanto o servidor quanto o cliente.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Estilização de botões com gradiente",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Defina as cores do gradiente para os botões da armadura cosmética."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Defina as cores do gradiente para os botões da armadura cosmética.",
+  "cos.config.CosArmorDisableUpdateChecks": "Desativar mensagens de verificação de atualizações",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Desativar ou não as mensagens de verificação de atualização sempre que um mundo for conectado."
 }

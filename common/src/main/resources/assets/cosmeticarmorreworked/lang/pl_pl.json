@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Opcje wspólne (serwer i klient)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Ustawienia te dotyczą zarówno serwera, jak i klienta",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Stylizacja przycisków gradientowych",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Ustaw kolory gradientu dla przycisków pancerza kosmetycznego"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Ustaw kolory gradientu dla przycisków pancerza kosmetycznego",
+  "cos.config.CosArmorDisableUpdateChecks": "Wyłącz komunikaty sprawdzania aktualizacji",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Czy wyłączyć komunikaty sprawdzające aktualizacje po dołączeniu do świata"
 }
