@@ -504,10 +504,10 @@ public class ModConfigs {
 
             /// CLIENT
             ScrollableLayout clientScroll = new ScrollableLayout(this.minecraft, clientLayout, 100);
+            clientScroll.arrangeElements();
             clientScroll.setMinWidth(maxWidth);
             clientScroll.setMaxHeight(this.height - 50);
             clientScroll.setPosition(this.width / 4, 20);
-            clientScroll.arrangeElements();
             clientScroll.visitWidgets(this::addRenderableWidget);
 
             Button backButton = Button.builder(Component.translatable("gui.back"), button -> onClose())
@@ -665,10 +665,10 @@ public class ModConfigs {
 
             /// CLIENT
             ScrollableLayout clientScroll = new ScrollableLayout(this.minecraft, clientLayout, 100);
+            clientScroll.arrangeElements();
             clientScroll.setMinWidth(maxWidth);
             clientScroll.setMaxHeight(this.height - 50);
             clientScroll.setPosition(this.width / 4, 20);
-            clientScroll.arrangeElements();
             clientScroll.visitWidgets(this::addRenderableWidget);
 
             Button backButton = Button.builder(Component.translatable("gui.back"), button -> onClose())
