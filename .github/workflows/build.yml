@@ -70,7 +70,7 @@ jobs:
         name: "${{ inputs.branch }} ${{ inputs.modversion }} NeoForge Release"
         target_commitish: ${{ inputs.branch }}
         body_path: ./neoforge/CHANGELOG.md
-        draft: true
+        draft: false
         prerelease: false
         files: |
           ./neoforge/build/libs/*.jar
@@ -93,7 +93,7 @@ jobs:
         name: "${{ inputs.branch }} ${{ inputs.modversion }} Forge Release"
         target_commitish: ${{ inputs.branch }}
         body_path: ./forge/CHANGELOG.md
-        draft: true
+        draft: false
         prerelease: false
         files: |
           ./forge/build/libs/*.jar
@@ -116,7 +116,7 @@ jobs:
         name: "${{ inputs.branch }} ${{ inputs.modversion }} Fabric Release"
         target_commitish: ${{ inputs.branch }}
         body_path: ./fabric/CHANGELOG.md
-        draft: true
+        draft: false
         prerelease: false
         files: |
           ./fabric/build/libs/*.jar
