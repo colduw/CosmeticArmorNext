@@ -327,7 +327,7 @@ public class ModConfigs {
             clientLayout.addChild(CosArmorCraftingTextColorButton);
 
             // ButtonStyling
-            Button goToButtonStylingMenu = Button.builder(Component.translatable("cosmeticarmorreworked.configuration.ButtonStyling"), button -> this.minecraft.setScreen(new ButtonStylingMenu(this)))
+            Button goToButtonStylingMenu = Button.builder(Component.translatable("cosmeticarmorreworked.configuration.ButtonStyling"), button -> this.minecraft.gui.setScreen(new ButtonStylingMenu(this)))
                     .width(100)
                     .build();
             clientLayout.addChild(SpacerElement.height(15));
@@ -496,7 +496,7 @@ public class ModConfigs {
             clientLayout.addChild(CosArmorButtonStyleActiveButton);
 
             // GradientButtonStyling
-            Button goToButtonStylingMenu = Button.builder(Component.translatable("cosmeticarmorreworked.configuration.GradientButtonStyling"), button -> this.minecraft.setScreen(new GradientButtonStylingMenu(this)))
+            Button goToButtonStylingMenu = Button.builder(Component.translatable("cosmeticarmorreworked.configuration.GradientButtonStyling"), button -> this.minecraft.gui.setScreen(new GradientButtonStylingMenu(this)))
                     .width(200)
                     .build();
             clientLayout.addChild(SpacerElement.height(15));
@@ -526,7 +526,7 @@ public class ModConfigs {
 
         @Override
         public void onClose() {
-            this.minecraft.setScreen(this.parent);
+            this.minecraft.gui.setScreen(this.parent);
         }
     }
 
@@ -687,7 +687,7 @@ public class ModConfigs {
 
         @Override
         public void onClose() {
-            this.minecraft.setScreen(this.parent);
+            this.minecraft.gui.setScreen(this.parent);
         }
     }
 }
