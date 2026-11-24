@@ -36,6 +36,10 @@ public class ForgeCosmeticArmorReworked {
     public static final RegistryObject<MenuType<ContainerCosArmor>> typeContainerCosArmor = MENU.register("inventorycosarmor", () -> IForgeMenuType.create(ModObjects.invMan::createContainerClient));
 
     protected void checkClientUpdate(ClientPlayerNetworkEvent.LoggingIn event) {
+        if (ModConfigs.CosArmorDisableUpdateChecks.get()) {
+            return;
+        }
+
         var tempContainer = ModList.getModContainerById(ModConstants.MODID);
         if (tempContainer.isEmpty()) {
             return;

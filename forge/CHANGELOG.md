@@ -1,3 +1,10 @@
+# [v7] - 2026.11.24
+
+Hotfix for v6
+
+- Added option to disable Update Notification messages
+    - Set `CosArmorDisableUpdateChecks` to `true` in the client configs to disable update notifications in the chat
+
 # [v6] - 2026.11.24
 
 - Added option to customize the Cosmetic Armor Button
