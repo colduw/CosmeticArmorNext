@@ -10,8 +10,8 @@
   "environment": "*",
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-next",
-    "issues": "https://github.com/colduw/CosmeticArmorNext/issues",
-    "sources": "https://github.com/colduw/CosmeticArmorNext"
+    "issues": "${issueTrackerURL}",
+    "sources": "${displayURL}"
   },
   "entrypoints": {
     "main": ["lain.mods.cos.init.fabric.FabricCosmeticArmorReworked"],

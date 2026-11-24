@@ -2,10 +2,12 @@ package lain.mods.cos.init.fabric;
 
 import lain.mods.cos.impl.ModConfigs;
 import lain.mods.cos.impl.ModObjects;
+import lain.mods.cos.impl.compat.UniversalGravesCompat;
 import lain.mods.cos.impl.inventory.ContainerCosArmor;
 import lain.mods.cos.impl.network.ModPayloads;
 import lain.mods.cos.init.ModConstants;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -20,5 +22,9 @@ public class FabricCosmeticArmorReworked implements ModInitializer {
         ModObjects.invMan.registerEvents();
         ModPayloads.setupServer();
         ModConfigs.registerConfigs();
+
+        if (FabricLoader.getInstance().isModLoaded("universal-graves") && !ModConfigs.CosArmorDisableUniversalGravesCompat.get()) {
+            UniversalGravesCompat.register();
+        }
     }
 }
