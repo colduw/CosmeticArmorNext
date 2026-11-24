@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Yleiset (palvelin- ja asiakas) asetukset",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Nämä asetukset vaikuttavat sekä palvelimeen että asiakkaaseen",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Liukuvärjäyspainikkeen muotoilu",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Aseta kosmeettisten haarniskapainikkeiden liukuvärit"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Aseta kosmeettisten haarniskapainikkeiden liukuvärit",
+  "cos.config.CosArmorDisableUpdateChecks": "Poista päivitystarkistusviestit käytöstä",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Poistetaanko päivitysten tarkistusviestit käytöstä aina, kun maailmaan liitetään"
 }

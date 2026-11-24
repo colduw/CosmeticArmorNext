@@ -1,6 +1,7 @@
 package lain.mods.cos.init.fabric;
 
 import fuzs.forgeconfigapiport.fabric.api.v5.client.ConfigScreenFactoryRegistry;
+import lain.mods.cos.impl.ModConfigs;
 import lain.mods.cos.impl.ModObjects;
 import lain.mods.cos.impl.client.GuiHandler;
 import lain.mods.cos.impl.client.KeyHandler;
@@ -26,6 +27,10 @@ public class FabricCosmeticArmorReworkedClient implements ClientModInitializer {
     protected static UpdateResult updateResult;
 
     protected void checkClientUpdate(ClientPacketListener handler, PacketSender sender, Minecraft client) {
+        if (ModConfigs.CosArmorDisableUpdateChecks.get()) {
+            return;
+        }
+
         if (updateResult != null && client.player != null) {
             ModObjects.logger.info("Cosmetic Armor Next version {}. (from version JSON): latest: {}, recommended: {}", updateResult.currentVersion(), updateResult.latestVersion(), updateResult.recommendedVersion());
             switch (updateResult.verStates()) {
