@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Allgemeine (Server- und Client-)Optionen",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Diese Einstellungen betreffen sowohl Server als auch Client.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Farbverlauf-Button-Styling",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Lege die Farbverläufe für die kosmetischen Rüstungsknöpfe fest."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Lege die Farbverläufe für die kosmetischen Rüstungsknöpfe fest.",
+  "cos.config.CosArmorDisableUpdateChecks": "Benachrichtigungen für Aktualisierungen deaktivieren",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Ob die Update-Prüfmeldungen beim Betreten einer Welt deaktiviert werden sollen oder nicht."
 }

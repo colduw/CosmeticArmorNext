@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Options communes (serveur et client)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Ces paramètres affectent à la fois le serveur et le client.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Style de bouton dégradé",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Définissez les couleurs dégradées pour les boutons d'armure cosmétique."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Définissez les couleurs dégradées pour les boutons d'armure cosmétique.",
+  "cos.config.CosArmorDisableUpdateChecks": "Désactiver les messages de vérification des mises à jour",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Faut-il désactiver ou non les messages de vérification de mise à jour lorsqu'un monde est rejoint"
 }

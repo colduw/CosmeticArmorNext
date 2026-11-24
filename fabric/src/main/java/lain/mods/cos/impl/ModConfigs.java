@@ -47,6 +47,7 @@ public class ModConfigs {
     public static BooleanValue CosArmorDisableRecipeBook;
     public static BooleanValue CosArmorDisableCosHatCommand;
     public static BooleanValue CosArmorDisableUniversalGravesCompat;
+    public static BooleanValue CosArmorDisableUpdateChecks;
 
     public static void registerConfigs() {
         ConfigRegistry.INSTANCE.register(ModConstants.MODID, ModConfig.Type.CLIENT, new ModConfigSpec.Builder() {
@@ -85,6 +86,9 @@ public class ModConfigs {
                 CosArmorCraftingTextColor = comment("Color of the drawn Crafting Text")
                         .translation("cos.config.CosArmorCraftingTextColor")
                         .defineInRange("CosArmorCraftingTextColor", 0x404040, 0, 0xFFFFFF);
+                CosArmorDisableUpdateChecks = comment("Whether or not to disable the update check messages whenever a world is joined")
+                        .translation("cos.config.CosArmorDisableUpdateChecks")
+                        .define("CosArmorDisableUpdateChecks", false);
 
                     comment("Button Styling").push("ButtonStyling");
                     CosArmorToggleStyle = comment("Style of the Toggle Buttons")

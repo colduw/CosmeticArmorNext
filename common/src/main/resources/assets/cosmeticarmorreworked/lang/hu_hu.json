@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Általános (szerver és kliens) beállítások",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Ezek a beállítások mind a szerverre, mind a kliensre vonatkoznak",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Színátmenetes gombstílus",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "A kozmetikai páncél gombok színátmenetes színeinek beállítása"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "A kozmetikai páncél gombok színátmenetes színeinek beállítása",
+  "cos.config.CosArmorDisableUpdateChecks": "Frissítési ellenőrző üzenetek letiltása",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Le legyen-e tiltva a frissítési ellenőrző üzenetek, amikor egy világhoz csatlakoznak"
 }
