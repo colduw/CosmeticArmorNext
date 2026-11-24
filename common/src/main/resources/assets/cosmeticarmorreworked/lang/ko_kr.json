@@ -75,7 +75,7 @@
   "cos.init.update.error": "Cosmetic Armor Next 업데이트를 확인할 수 없습니다. (오류: %s) [%s]",
   "cos.init.update.latest": "Cosmetic Armor Next의 최신 버전(%s)이 설치되어 있습니다.",
   "cos.init.update.recommended": "현재 Cosmetic Armor Next의 권장 버전이 설치되어 있습니다. 또한 최신 버전인 %s도 사용 가능합니다.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "꾸미기용 갑옷 인벤토리 열기",
   "cosmeticarmorreworked.configuration.ButtonStyling": "버튼 스타일링",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "꾸미기용 갑옷 버튼의 스타일을 설정하세요",
