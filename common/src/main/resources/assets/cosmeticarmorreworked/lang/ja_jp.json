@@ -75,7 +75,7 @@
   "cos.init.update.error": "Cosmetic Armor Nextのアップデートを確認できませんでした。(エラー: %s) [%s]",
   "cos.init.update.latest": "Cosmetic Armor Nextの最新バージョン（%s）がインストールされています。",
   "cos.init.update.recommended": "Cosmetic Armor Nextの推奨バージョンがインストールされていますが、より新しい最新バージョンも利用可能です：%s。",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "コスメティックアーマーのインベントリを開く",
   "cosmeticarmorreworked.configuration.ButtonStyling": "ボタンのスタイリング",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "装飾用アーマーボタンのスタイルを設定します",

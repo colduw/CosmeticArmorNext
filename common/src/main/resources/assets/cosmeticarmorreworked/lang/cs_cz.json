@@ -75,7 +75,7 @@
   "cos.init.update.error": "Nelze zkontrolovat dostupnost aktualizace Cosmetic Armor Next. (chyba: %s) [%s]",
   "cos.init.update.latest": "Máte nainstalovanou nejnovější verzi (%s) programu Cosmetic Armor Next.",
   "cos.init.update.recommended": "Máte nainstalovanou doporučenou verzi Cosmetic Armor Next, k dispozici je také novější nejnovější verze: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Otevřít inventář kosmetického brnění",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Styling tlačítek",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Nastavte styl tlačítek kosmetického brnění",

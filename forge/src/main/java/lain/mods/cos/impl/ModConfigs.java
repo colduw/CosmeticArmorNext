@@ -407,7 +407,7 @@ public class ModConfigs {
     public static class ButtonStylingMenu extends Screen {
         public final Screen parent;
         public ButtonStylingMenu(Screen parent) {
-            super(Component.translatable("cos.key.category"));
+            super(Component.translatable("key.category.cosmeticarmorreworked.cos.key.category"));
             this.parent = parent;
         }
 
@@ -535,7 +535,7 @@ public class ModConfigs {
     public static class GradientButtonStylingMenu extends Screen {
         public final Screen parent;
         public GradientButtonStylingMenu(Screen parent) {
-            super(Component.translatable("cos.key.category"));
+            super(Component.translatable("key.category.cosmeticarmorreworked.cos.key.category"));
             this.parent = parent;
         }
 
