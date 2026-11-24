@@ -75,7 +75,7 @@
   "cos.init.update.error": "Cosmetic Armor Next güncellemesi kontrol edilemedi. (hata: %s) [%s]",
   "cos.init.update.latest": "Cosmetic Armor Next'in en son sürümüne (%s) sahipsiniz.",
   "cos.init.update.recommended": "Cosmetic Armor Next'in önerilen sürümünü yüklemişsiniz, ayrıca daha yeni bir sürüm de mevcut: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Kozmetik Zırh Envanterini Aç",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Düğme Stili",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Kozmetik Zırh Düğmelerinin stilini ayarlayın.",

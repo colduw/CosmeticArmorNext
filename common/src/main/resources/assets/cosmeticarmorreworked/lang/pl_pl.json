@@ -75,7 +75,7 @@
   "cos.init.update.error": "Nie można sprawdzić dostępności aktualizacji Cosmetic Armor Next. (błąd: %s) [%s]",
   "cos.init.update.latest": "Masz zainstalowaną najnowszą wersję (%s) programu Cosmetic Armor Next.",
   "cos.init.update.recommended": "Masz zainstalowaną zalecaną wersję Cosmetic Armor Next. Dostępna jest również nowsza wersja: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Otwórz ekwipunek zbroi kosmetycznej",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Stylizacja przycisków",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Ustaw styl przycisków pancerza kosmetycznego",

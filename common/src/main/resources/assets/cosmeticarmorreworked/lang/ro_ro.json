@@ -75,7 +75,7 @@
   "cos.init.update.error": "Nu s-a putut căuta o actualizare Cosmetic Armor Next. (eroare: %s) [%s]",
   "cos.init.update.latest": "Ai instalată cea mai recentă versiune (%s) de Cosmetic Armor Next.",
   "cos.init.update.recommended": "Ai instalat versiunea recomandată de Cosmetic Armor Next, există și o versiune mai nouă disponibilă: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Inventarul deschis de armură cosmetică",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Stilizarea butoanelor",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Setați stilul butoanelor Cosmetic Armor",

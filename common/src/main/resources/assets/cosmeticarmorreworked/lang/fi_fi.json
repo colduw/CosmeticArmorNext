@@ -75,7 +75,7 @@
   "cos.init.update.error": "Cosmetic Armor Next -päivitystä ei voitu tarkistaa. (virhe: %s) [%s]",
   "cos.init.update.latest": "Sinulla on asennettuna uusin versio (%s) pelistä Cosmetic Armor Next.",
   "cos.init.update.recommended": "Sinulla on asennettuna suositeltu Cosmetic Armor Next -versio, ja saatavilla on myös uudempi versio: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Avaa kosmeettisten haarniskojen inventaario",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Painikkeiden muotoilu",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Aseta kosmeettisten haarniskapainikkeiden tyyli",

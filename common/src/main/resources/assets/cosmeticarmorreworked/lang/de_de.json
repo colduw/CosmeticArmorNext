@@ -75,7 +75,7 @@
   "cos.init.update.error": "Es konnte nicht geprüft werden, ob ein Update für die kosmetische Rüstung verfügbar ist. (Fehler: %s) [%s]",
   "cos.init.update.latest": "Sie haben die neueste Version (%s) von Cosmetic Armor Next installiert.",
   "cos.init.update.recommended": "Sie haben die empfohlene Version von Cosmetic Armor Next installiert. Es ist auch eine neuere Version verfügbar: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Kosmetisches Rüstungsinventar öffnen",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Button-Styling",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Lege den Stil der kosmetischen Rüstungsknöpfe fest.",

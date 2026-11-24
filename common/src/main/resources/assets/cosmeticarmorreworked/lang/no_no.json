@@ -75,7 +75,7 @@
   "cos.init.update.error": "Kunne ikke se etter en oppdatering for Cosmetic Armor Next. (feil: %s) [%s]",
   "cos.init.update.latest": "Du har den nyeste versjonen (%s) av Cosmetic Armor Next installert.",
   "cos.init.update.recommended": "Du har den anbefalte versjonen av Cosmetic Armor Next installert, det finnes også en nyere versjon tilgjengelig: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Åpne beholdningen av kosmetiske rustninger",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Knappestil",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Angi stilen på de kosmetiske rustningsknappene",

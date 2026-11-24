@@ -75,7 +75,7 @@
   "cos.init.update.error": "Could not check for a Cosmetic Armor Next update. (error: %s) [%s]",
   "cos.init.update.latest": "You have the latest version (%s) of Cosmetic Armor Next installed.",
   "cos.init.update.recommended": "You have the recommended version of Cosmetic Armor Next installed, there is also a newer latest version available: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Open Cosmetic Armor Inventory",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Button Styling",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Set the style of the Cosmetic Armor Buttons",

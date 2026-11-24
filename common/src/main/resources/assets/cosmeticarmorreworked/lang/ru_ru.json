@@ -75,7 +75,7 @@
   "cos.init.update.error": "Не удалось проверить наличие обновления Cosmetic Armor Next. (ошибка: %s) [%s]",
   "cos.init.update.latest": "У вас установлена \u200B\u200Bпоследняя версия (%s) приложения Cosmetic Armor Next.",
   "cos.init.update.recommended": "У вас установлена \u200B\u200Bрекомендуемая версия Cosmetic Armor Next, также доступна более новая версия: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Открыть инвентарь косметической брони",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Оформление кнопок",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Настройте стиль кнопок косметической брони.",
