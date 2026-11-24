@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Opciones comunes (servidor y cliente)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Esta configuración afecta tanto al servidor como al cliente.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Estilo de botón degradado",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Configura los colores degradados para los botones de la armadura cosmética."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Configura los colores degradados para los botones de la armadura cosmética.",
+  "cos.config.CosArmorDisableUpdateChecks": "Desactivar los mensajes de comprobación de actualizaciones",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Si se deben deshabilitar o no los mensajes de comprobación de actualización cada vez que se une un mundo."
 }

@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Common (Server & Client) Options",
   "cosmeticarmorreworked.configuration.Common.tooltip": "These settings affects both server and client",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Gradient Button Styling",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Set the gradient colors for the Cosmetic Armor Buttons"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Set the gradient colors for the Cosmetic Armor Buttons",
+  "cos.config.CosArmorDisableUpdateChecks": "Disable Update Check Messages",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Whether or not to disable the update check messages whenever a world is joined"
 }

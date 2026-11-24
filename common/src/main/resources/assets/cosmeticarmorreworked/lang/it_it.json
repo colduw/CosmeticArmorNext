@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Opzioni comuni (server e client)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Queste impostazioni influiscono sia sul server che sul client.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Stile del pulsante sfumato",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Imposta i colori sfumati per i pulsanti dell'armatura cosmetica"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Imposta i colori sfumati per i pulsanti dell'armatura cosmetica",
+  "cos.config.CosArmorDisableUpdateChecks": "Disabilita i messaggi di controllo degli aggiornamenti",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Se disabilitare o meno i messaggi di controllo degli aggiornamenti ogni volta che ci si unisce a un mondo."
 }

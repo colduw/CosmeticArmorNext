@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Opțiuni comune (server și client)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Aceste setări afectează atât serverul, cât și clientul",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Stilizarea butoanelor cu gradient",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Setați culorile gradientului pentru butoanele Cosmetic Armor"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Setați culorile gradientului pentru butoanele Cosmetic Armor",
+  "cos.config.CosArmorDisableUpdateChecks": "Dezactivați mesajele de verificare a actualizărilor",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Dacă se dezactivează sau nu mesajele de verificare a actualizărilor de fiecare dată când o lume este adăugată"
 }

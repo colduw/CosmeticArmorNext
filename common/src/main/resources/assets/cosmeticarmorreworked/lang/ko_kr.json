@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "공통 옵션(서버 및 클라이언트)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "이 설정은 서버와 클라이언트 모두에 영향을 미칩니다.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "그라디언트 버튼 스타일링",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "꾸미기용 갑옷 버튼의 그라데이션 색상을 설정하세요"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "꾸미기용 갑옷 버튼의 그라데이션 색상을 설정하세요",
+  "cos.config.CosArmorDisableUpdateChecks": "업데이트 확인 메시지 비활성화",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "월드에 접속할 때마다 업데이트 확인 메시지를 표시하지 않도록 할지 여부"
 }

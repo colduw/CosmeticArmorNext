@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Algemene (server- en client)opties",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Deze instellingen hebben invloed op zowel de server als de client.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Stijl van knoppen met kleurverloop",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Stel de kleurovergangen in voor de knoppen van de cosmetische pantsers."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Stel de kleurovergangen in voor de knoppen van de cosmetische pantsers.",
+  "cos.config.CosArmorDisableUpdateChecks": "Updatecontroleberichten uitschakelen",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Of de updatecontroleberichten moeten worden uitgeschakeld wanneer een wereld wordt betreden."
 }

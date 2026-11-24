@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "常用（服务器和客户端）选项",
   "cosmeticarmorreworked.configuration.Common.tooltip": "这些设置会影响服务器和客户端。",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "渐变按钮样式",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "设置外观盔甲按钮的渐变颜色"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "设置外观盔甲按钮的渐变颜色",
+  "cos.config.CosArmorDisableUpdateChecks": "禁用更新检查消息",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "是否在每次加入世界时禁用更新检查消息"
 }

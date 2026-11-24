@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Ortak (Sunucu ve İstemci) Seçenekler",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Bu ayarlar hem sunucuyu hem de istemciyi etkiler.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Gradyan Düğme Stili",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Kozmetik Zırh Düğmeleri için degrade renkleri ayarlayın."
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Kozmetik Zırh Düğmeleri için degrade renkleri ayarlayın.",
+  "cos.config.CosArmorDisableUpdateChecks": "Güncelleme Kontrol Mesajlarını Devre Dışı Bırak",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Bir dünyaya katıldığınızda güncelleme kontrol mesajlarının devre dışı bırakılıp bırakılmayacağı."
 }
