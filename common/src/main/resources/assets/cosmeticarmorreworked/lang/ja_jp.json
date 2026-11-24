@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "共通オプション（サーバーおよびクライアント）",
   "cosmeticarmorreworked.configuration.Common.tooltip": "これらの設定はサーバーとクライアントの両方に影響します",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "グラデーションボタンのスタイリング",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "装飾用アーマーボタンのグラデーションカラーを設定します。"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "装飾用アーマーボタンのグラデーションカラーを設定します。",
+  "cos.config.CosArmorDisableUpdateChecks": "アップデートチェックメッセージを無効にする",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "ワールド参加時に更新チェックメッセージを無効にするかどうか"
 }

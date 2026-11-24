@@ -84,5 +84,7 @@
   "cosmeticarmorreworked.configuration.Common": "Běžné možnosti (server a klient)",
   "cosmeticarmorreworked.configuration.Common.tooltip": "Tato nastavení ovlivňují server i klienta.",
   "cosmeticarmorreworked.configuration.GradientButtonStyling": "Stylování tlačítek s přechodem",
-  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Nastavení barev přechodu pro tlačítka kosmetického brnění"
+  "cosmeticarmorreworked.configuration.GradientButtonStyling.tooltip": "Nastavení barev přechodu pro tlačítka kosmetického brnění",
+  "cos.config.CosArmorDisableUpdateChecks": "Zakázat zprávy o kontrole aktualizací",
+  "cos.config.CosArmorDisableUpdateChecks.tooltip": "Zda zakázat zprávy o kontrole aktualizací při každém připojení ke světu"
 }
