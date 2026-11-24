@@ -75,7 +75,7 @@
   "cos.init.update.error": "Kon niet controleren op een update voor Cosmetic Armor Next. (fout: %s) [%s]",
   "cos.init.update.latest": "Je hebt de nieuwste versie (%s) van Cosmetic Armor Next geïnstalleerd.",
   "cos.init.update.recommended": "Je hebt de aanbevolen versie van Cosmetic Armor Next geïnstalleerd; er is ook een nieuwere, actuele versie beschikbaar: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Open de inventaris van cosmetische pantsers",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Knopstijl",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Stel de stijl van de cosmetische pantserknoppen in.",

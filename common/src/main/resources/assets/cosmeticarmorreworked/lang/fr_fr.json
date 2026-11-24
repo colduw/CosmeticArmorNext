@@ -75,7 +75,7 @@
   "cos.init.update.error": "Impossible de vérifier la disponibilité d'une mise à jour pour l'armure cosmétique suivante. (erreur : %s) [%s]",
   "cos.init.update.latest": "Vous avez installé la dernière version (%s) de Cosmetic Armor Next.",
   "cos.init.update.recommended": "Vous avez installé la version recommandée de Cosmetic Armor Next, il existe également une version plus récente disponible : %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Ouvrir l'inventaire des armures cosmétiques",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Style des boutons",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "Définissez le style des boutons d'armure cosmétique",

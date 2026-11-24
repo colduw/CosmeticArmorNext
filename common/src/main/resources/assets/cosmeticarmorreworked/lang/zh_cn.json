@@ -75,7 +75,7 @@
   "cos.init.update.error": "无法检查 Cosmetic Armor Next 更新。（错误：%s）[%s]",
   "cos.init.update.latest": "您已安装最新版本 (%s) 的 Cosmetic Armor Next。",
   "cos.init.update.recommended": "您已安装了推荐版本的 Cosmetic Armor Next，还有更新的最新版本可用：%s。",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "打开外观装备库存",
   "cosmeticarmorreworked.configuration.ButtonStyling": "按钮样式",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "设置外观盔甲按钮的样式",

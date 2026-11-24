@@ -75,7 +75,7 @@
   "cos.init.update.error": "Nem sikerült ellenőrizni a Cosmetic Armor Next frissítését. (hiba: %s) [%s]",
   "cos.init.update.latest": "A Cosmetic Armor Next legújabb verziója (%s) telepítve van.",
   "cos.init.update.recommended": "A Cosmetic Armor Next ajánlott verziója telepítve van, de elérhető egy újabb verzió is: %s.",
-  "cos.key.category": "Cosmetic Armor Next",
+  "key.category.cosmeticarmorreworked.cos.key.category": "Cosmetic Armor Next",
   "cos.key.opencosarmorinventory": "Kozmetikai páncélkészlet megnyitása",
   "cosmeticarmorreworked.configuration.ButtonStyling": "Gombstílus",
   "cosmeticarmorreworked.configuration.ButtonStyling.tooltip": "A kozmetikai páncélgombok stílusának beállítása",
