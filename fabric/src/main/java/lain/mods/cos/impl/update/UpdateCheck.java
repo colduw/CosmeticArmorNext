@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -71,7 +72,7 @@ public class UpdateCheck {
     }
 
     private String httpReq(String reqURL, String modid, String modver, String mcver) throws IOException {
-        URL url = new URL(reqURL);
+        URL url = URI.create(reqURL).toURL();
         HttpURLConnection req = (HttpURLConnection) url.openConnection();
         req.setInstanceFollowRedirects(true);
         req.setRequestMethod("GET");
